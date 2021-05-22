@@ -1,4 +1,4 @@
-# `5.12.5-kurisu-x86_64` <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/kurisu-x86_64?style=flat-square&label=&color=000000&logo=GitHub&logoColor=white&labelColor=373e4d"/>
+# `5.12.4-kurisu-x86_64` <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/kurisu-x86_64?style=flat-square&label=&color=000000&logo=GitHub&logoColor=white&labelColor=373e4d"/>
 
 <p align="right"><i>Optimized for multitasking under heavy load (hopefully)</i></p>
 
@@ -22,7 +22,7 @@
 **Gentoo/Linux** (as root)  
 `/usr/src/linux`
 ```sh
-curl -s "https://raw.githubusercontent.com/owl4ce/kurisu-x86_64/kurisu-x86_64/kernel.sources/.config_kurisu" -o /usr/src/linux/.config
+cp .config_kurisu .config
 
 make -j$(nproc) menuconfig
 
