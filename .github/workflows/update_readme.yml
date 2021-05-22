@@ -23,8 +23,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
         run: |
           export README_md="$(cat ./.github/README.md.tpl)"
-          if [[ "${{ env.GIT_COMMIT_MESSAGE_BODY }}" = *"x86_64"* ]]; then
-             printf "%s\n" "$README_md" | sed "s/_KVER_/${{ env.GIT_COMMIT_MESSAGE_BODY }}/" > ./README.md
+          export COMMIT_ms="$(echo "${{ env.GIT_COMMIT_MESSAGE_BODY }}" | head -n1)"
+          if [[ "$COMMIT_ms" = *"x86_64"* ]]; then
+             printf "%s\n" "$README_md" | sed "s/_KVER_/$COMMIT_ms/" > ./README.md
           fi
 
       - uses: stefanzweifel/git-auto-commit-action@v4
