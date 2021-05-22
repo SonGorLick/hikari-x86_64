@@ -29,7 +29,7 @@ jobs:
           if [[ "$COMMIT_ms" = *"x86_64"* ]]; then
              printf "%s\n" "$README_md" | sed "s/_KVER_/$COMMIT_ms/" > ./README.md
           elif [[ "${{ env.GIT_COMMIT_MESSAGE_SUBJECT }}" = "Update README.md.tpl" ]]; then
-             export KVER_sign="$(grep -oP '# `\K[^`]+' ./README.md)"
+             export KVER_sign="$(grep -oP '## .*>`\K[^`</.*]+' ./README.md)"
              printf "%s\n" "$README_md" | sed "s/_KVER_/$KVER_sign/" > ./README.md
           fi
 
