@@ -1,4 +1,4 @@
-# `5.12.5-kurisu-x86_64` <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/kurisu-x86_64?style=flat-square&label=&color=000000&logo=GitHub&logoColor=white&labelColor=373e4d"/>
+# `Signed-off-by: ʜᴀʀʀʏ <findarr@pm.me>` <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/kurisu-x86_64?style=flat-square&label=&color=000000&logo=GitHub&logoColor=white&labelColor=373e4d"/>
 
 <p align="right"><i>Optimized for multitasking under heavy load (hopefully)</i></p>
 
@@ -6,7 +6,7 @@
 <a href="#kernel-sources"><img alt="logo" align="right" width="439px" src="https://i.ibb.co/TYdw4Md/kurisu.png"/></a>
 
 - 500Hz tick rate
-- EFI Stub Support
+- EFI Stub support
 - Lz4 compressed bzImage
 - BFQ I/O Scheduler as default
 - Governor performance as default
