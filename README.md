@@ -1,4 +1,4 @@
-## <p align="center">`5.12.5-kurisu-x86_64`</p>
+## <p align="center">`5`</p>
 
 <p align="center"><i>~ optimized for multitasking under heavy load (hopefully) ~</i></p>
 
@@ -6,7 +6,7 @@
 <a href="#kernel-sources"><img alt="logo" align="right" width="439px" src="https://i.ibb.co/TYdw4Md/kurisu.png"/></a>
 
 - 500Hz tick rate
-- EFI Stub supports
+- EFI Stub supported
 - Lz4 compressed bzImage
 - BFQ I/O Scheduler as default
 - Governor performance as default
