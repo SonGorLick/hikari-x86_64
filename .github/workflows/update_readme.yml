@@ -32,9 +32,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          commit_message: Sync README.md
+          commit_message: Sync README.md `BOT`
           branch: kurisu-x86_64
           commit_user_name: 牧瀬 紅莉栖
           commit_user_email: findarr@pm.me
           commit_author: 牧瀬 紅莉栖  <findarr@pm.me>
+          add_options: '-u'
           skip_dirty_check: true
+          disable_globbing: true
