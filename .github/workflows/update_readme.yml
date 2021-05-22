@@ -1,0 +1,39 @@
+name: Update README.md
+
+on:
+  push:
+    branches: [ kurisu-x86_64 ]
+  pull_request:
+    branches: [ kurisu-x86_64 ]
+  
+  workflow_dispatch:
+  
+jobs:
+  update_readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+          
+      - name: Expose git commit data
+        uses: rlespinasse/git-commit-data-action@v1.x
+
+      - name: Generate README.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+        run: |
+          read -rd '' README_md <<(cat ./.github/README.md.tpl)
+          if [[ "${{ env.GIT_COMMIT_MESSAGE_BODY }}" = *"x86_64"* ]]; then
+             printf "%s\n" "$README_md" | sed "s/_KVER_/${{ env.GIT_COMMIT_MESSAGE_BODY }}/" > ./README.md
+          fi
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          commit_message: Sync README.md
+          branch: kurisu-x86_64
+          commit_user_name: 牧瀬 紅莉栖
+          commit_user_email: findarr@pm.me
+          commit_author: 牧瀬 紅莉栖  <findarr@pm.me>
+          skip_dirty_check: true
