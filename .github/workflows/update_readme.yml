@@ -32,7 +32,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          commit_message: '`B:cherry_blossom:T` 🡲 Sync README.md'
+          commit_message: '`:hibiscus: AMADEUS` 🡲 Sync README.md'
           branch: 'kurisu-x86_64'
           commit_user_name: '牧瀬 紅莉栖'
           commit_user_email: 'findarr@pm.me'
