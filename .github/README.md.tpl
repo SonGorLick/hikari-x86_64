@@ -1,8 +1,8 @@
-# `_KVER_` <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/kurisu-x86_64?style=flat-square&label=&color=000000&logo=GitHub&logoColor=white&labelColor=373e4d"/>
+## <p align="center">`_KVER_`</p>
 
-<p align="right"><i>Optimized for multitasking under heavy load (hopefully)</i></p>
+<p align="center"><i>~ optimized for multitasking under heavy load (hopefully) ~</i></p>
 
-## [Kernel sources](./kernel.sources)
+## [Kernel sources](./kernel.sources) <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/kurisu-x86_64?style=flat-square&label=&color=000000&logo=GitHub&logoColor=white&labelColor=373e4d"/>
 <a href="#kernel-sources"><img alt="logo" align="right" width="439px" src="https://i.ibb.co/TYdw4Md/kurisu.png"/></a>
 
 - 500Hz tick rate
