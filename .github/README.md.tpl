@@ -6,7 +6,7 @@
 <a href="#kernel-sources"><img alt="logo" align="right" width="439px" src="https://i.ibb.co/TYdw4Md/kurisu.png"/></a>
 
 - 500Hz tick rate
-- EFI Stub supports
+- EFI Stub supported
 - Lz4 compressed bzImage
 - BFQ I/O Scheduler as default
 - Governor performance as default
