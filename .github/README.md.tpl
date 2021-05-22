@@ -22,7 +22,7 @@
 **Gentoo/Linux** (as root)  
 `/usr/src/linux`
 ```sh
-curl -s "https://raw.githubusercontent.com/owl4ce/kurisu-x86_64/kurisu-x86_64/kernel.sources/.config_kurisu" -o /usr/src/linux/.config
+cp .config_kurisu .config
 
 make -j$(nproc) menuconfig
 
