@@ -5,6 +5,8 @@ on:
     branches: [ kurisu-x86_64 ]
   pull_request:
     branches: [ kurisu-x86_64 ]
+  schedule:
+    - cron: "0 */1 * * *"
   
   workflow_dispatch:
   
@@ -14,7 +16,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-          
+
       - name: Expose git commit data
         uses: rlespinasse/git-commit-data-action@v1.x
 
@@ -24,7 +26,7 @@ jobs:
         run: |
           export README_md="$(cat ./.github/README.md.tpl)"
           export COMMIT_ms="$(echo "${{ env.GIT_COMMIT_MESSAGE_BODY }}" | head -n1)"
-          if [[ "$COMMIT_ms" = *"x86_64"* ]]; then
+          if [[ "$COMMIT_ms" = *"x86_64"* ]] || [[ "${{ env.GIT_COMMIT_MESSAGE_SUBJECT }}" = "Update README.md.tpl" ]]; then
              printf "%s\n" "$README_md" | sed "s/_KVER_/$COMMIT_ms/" > ./README.md
           fi
 
