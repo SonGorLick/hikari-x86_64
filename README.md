@@ -19,7 +19,7 @@
 - [Kurisu Makise『牧瀬 紅莉栖』](./kernel.sources/drivers/video/logo/logo_linux_clut224.ppm) <kbd>1366x768</kbd>
 
 ##  
-**Gentoo/Linux** (as root)  
+**Gentoo/Linux** (as root, pkg: cpio, lz4)  
 `/usr/src/linux`
 ```sh
 cp .config_kurisu .config
