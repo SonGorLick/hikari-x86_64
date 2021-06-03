@@ -68,4 +68,4 @@ efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --lo
 
 > If you want silent boot, simply use `quiet` instead.
 
-[`backup_gentoo_config`](https://github.com/owl4ce/hold-my-gentoo)
+###### <p align="right">[`backup_gentoo_config`](https://github.com/owl4ce/hold-my-gentoo)</p>
