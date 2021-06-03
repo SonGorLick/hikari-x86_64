@@ -1,4 +1,4 @@
-## <p align="center">`5.12.7-kurisu-x86_64`</p>
+## <p align="center">`5.12.8-kurisu-x86_64`</p>
 
 <p align="center"><i>~ optimized for multitasking under heavy load (hopefully) ~</i></p>
 
