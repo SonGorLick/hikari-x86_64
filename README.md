@@ -38,6 +38,13 @@ make -j$(nproc) install
 > make LLVM=1 -j$(nproc)
 > ```
 
+> If you find an area with a black background covering the console tty's font, please turn this on  
+> ```cfg  
+> FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER=y`
+> ```
+> **PATH**:  
+> Device Drivers **->** Graphics support **->** Console display driver support
+
 ##  
 ### Generate initramfs `if using`
 **Dracut**  
