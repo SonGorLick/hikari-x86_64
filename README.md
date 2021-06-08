@@ -11,7 +11,7 @@
 - BFQ I/O Scheduler as default
 - Governor performance as default
 - Disabled numa, kexec, debugging, etc.
-- AMD SoC only, disabled most Intel features
+- AMD and Intel SoC only, disabled other SoCs
 - [Xanmod-~~CacULE~~ patchset + Gentoo patches](https://gitlab.com/src_prepare/src_prepare-overlay/-/tree/master/sys-kernel/xanmod-sources)
 - Enabled lz4 + z3fold zswap compressed block
 
