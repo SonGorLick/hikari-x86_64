@@ -32,8 +32,8 @@ make -j$(nproc)
 make -j$(nproc) modules_install
 make -j$(nproc) install
 ```
-> Other options is compiling with [`LLVM Toolchain`](https://www.kernel.org/doc/html/latest/kbuild/llvm.html)  
-> **Note!** It's estimated that it may be longer than the GCC.
+> Other options is compiling with [LLVM toolchain](https://www.kernel.org/doc/html/latest/kbuild/llvm.html).  
+> **Note!** It's estimated that it may be longer than the GCC and binutils.
 > ```sh
 > make LLVM=1 -j$(nproc)
 > ```
