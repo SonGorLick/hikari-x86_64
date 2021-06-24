@@ -60,7 +60,7 @@ dracut --kver <version> /boot/initramfs-<version>.img --force
 **With initramfs**
 ```sh
 efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --loader "\vmlinuz-5.12.12-kurisu-x86_64" \
--u "loglevel=4 initrd=\initramfs-5.12.5-kurisu-x86_64.img"
+-u "loglevel=4 initrd=\initramfs-5.12.12-kurisu-x86_64.img"
 ```
 
 **Without initramfs**
