@@ -32,12 +32,15 @@ make -j$(nproc)
 make -j$(nproc) modules_install
 make -j$(nproc) install
 ```
-> Other options is compiling with [LLVM Toolchains](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO (enabled by default).  
-> **Note!** Its estimated that it may be longer than the GCC and Binutils.
+> Other options is compiling with [LLVM Toolchains](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO (enabled by default in this config, and need `LLVM_IAS=1`).  
+> **Note!** Its estimated that it may be longer than the GCC and Binutils,
+> but significally improving performance on specific CPU by using ThinLTO and optimization level 3.
 > ```sh
 > make LLVM=1 LLVM_IAS=1 -j$(nproc)
 > ```
+>   
 > ![ThinLTO](https://raw.githubusercontent.com/owl4ce/kurisu-x86_64/kurisu-x86_64/.github/screenshots/2021-06-29-062643_1301x748_scrot.png)
+>   
 > ```sh
 > CONFIG_LTO=y
 > CONFIG_LTO_CLANG=y
@@ -49,7 +52,8 @@ make -j$(nproc) install
 > CONFIG_LTO_CLANG_THIN=y
 > ```
 
-> Recommended is to compile with native CPU optimization or called `-march`, detected by GCC or Clang.
+> Recommended is to compile with native CPU optimization or called `-march`, detected by GCC or Clang.   
+>   
 > ![-MARCH](https://raw.githubusercontent.com/owl4ce/kurisu-x86_64/kurisu-x86_64/.github/screenshots/2021-06-29-061857_1301x748_scrot.png)
 
 > If you find an area with a black background covering the console tty's font, please turn this on!  
