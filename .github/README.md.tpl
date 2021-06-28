@@ -32,9 +32,9 @@ make -j$(nproc)
 make -j$(nproc) modules_install
 make -j$(nproc) install
 ```
-> Other options is compiling with [LLVM Toolchains](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO (enabled by default in this config, and need `LLVM_IAS=1`).  
+> Other options is compiling with [LLVM Toolchains](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO (enabled by default, but needs `LLVM_IAS=1`).  
 > **Note!** Its estimated that it may be longer than the GCC and Binutils,
-> but significally improving performance on specific CPU by using ThinLTO and optimization level 3.
+> but significally improving performance on specific CPU by using ThinLTO and optimization level 3 (enabled by default).
 > ```sh
 > make LLVM=1 LLVM_IAS=1 -j$(nproc)
 > ```
@@ -52,7 +52,7 @@ make -j$(nproc) install
 > CONFIG_LTO_CLANG_THIN=y
 > ```
 
-> Recommended is to compile with native CPU optimization or called `-march`, detected by GCC or Clang.   
+> Recommended to compile with native CPU optimization or called `-march`, detected by GCC or Clang.   
 >   
 > ![-MARCH](https://raw.githubusercontent.com/owl4ce/kurisu-x86_64/kurisu-x86_64/.github/screenshots/2021-06-29-061857_1301x748_scrot.png)
 
@@ -60,8 +60,8 @@ make -j$(nproc) install
 > ```cfg  
 > CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER=y
 > ```
-> **PATH**  
-> `Device Drivers` -> `Graphics support` -> `Console display driver support`
+> **: PATH**  
+> **:** `Device Drivers` -> `Graphics support` -> `Console display driver support`
 
 ##  
 ### Generate initramfs `if using`
