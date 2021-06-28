@@ -32,17 +32,31 @@ make -j$(nproc)
 make -j$(nproc) modules_install
 make -j$(nproc) install
 ```
-> Other options is compiling with [LLVM toolchain](https://www.kernel.org/doc/html/latest/kbuild/llvm.html).  
-> **Note!** It's estimated that it may be longer than the GCC and binutils.
+> Other options is compiling with [LLVM Toolchains](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO (enabled by default).  
+> **Note!** Its estimated that it may be longer than the GCC and Binutils.
 > ```sh
-> make LLVM=1 -j$(nproc)
+> make LLVM=1 LLVM_IAS=1 -j$(nproc)
+> ```
+> ![ThinLTO](https://raw.githubusercontent.com/owl4ce/kurisu-x86_64/kurisu-x86_64/.github/screenshots/2021-06-29-062643_1301x748_scrot.png)
+> ```sh
+> CONFIG_LTO=y
+> CONFIG_LTO_CLANG=y
+> CONFIG_ARCH_SUPPORTS_LTO_CLANG=y
+> CONFIG_ARCH_SUPPORTS_LTO_CLANG_THIN=y
+> CONFIG_HAS_LTO_CLANG=y
+> # CONFIG_LTO_NONE is not set
+> # CONFIG_LTO_CLANG_FULL is not set
+> CONFIG_LTO_CLANG_THIN=y
 > ```
 
-> If you find an area with a black background covering the console tty's font, please turn this on  
+> Recommended is to compile with native CPU optimization or called `-march`, detected by GCC or Clang.
+> ![-MARCH](https://raw.githubusercontent.com/owl4ce/kurisu-x86_64/kurisu-x86_64/.github/screenshots/2021-06-29-061857_1301x748_scrot.png)
+
+> If you find an area with a black background covering the console tty's font, please turn this on!  
 > ```cfg  
 > CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER=y
 > ```
-> **PATH**:  
+> **PATH**  
 > `Device Drivers` -> `Graphics support` -> `Console display driver support`
 
 ##  
