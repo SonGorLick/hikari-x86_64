@@ -36,10 +36,15 @@ make -j$(nproc) install
 > Always set multiple jobs with load average to prevent hangs nor system freeze. Above will use "core/threads + 1".
 > 
 > Other options is compiling with [LLVM toolchain](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO (enabled by default, but needs `LLVM_IAS=1`).  
-> **Note!** Its estimated that it may be longer than the GCC and Binutils,
-> but significally improving performance on specific CPU by using ThinLTO and optimization level 3 (enabled by default).
+> **Note!**  
+> Its estimated that it may be longer than the GCC and Binutils, but significally improving performance on specific CPU by using ThinLTO and optimization level 3 (enabled by default).
 > ```sh
+> make LLVM=1 LLVM_IAS=1 -j$(nproc) menuconfig
+> 
 > make LLVM=1 LLVM_IAS=1 -j$(nproc) -l$(($(nproc)+1))
+> 
+> make LLVM=1 LLVM_IAS=1 -j$(nproc) modules_install
+> make LLVM=1 LLVM_IAS=1 -j$(nproc) install
 > ```
 >   
 > ![ThinLTO](https://raw.githubusercontent.com/owl4ce/kurisu-x86_64/kurisu-x86_64/.github/screenshots/2021-06-29-062643_1301x748_scrot.png)
