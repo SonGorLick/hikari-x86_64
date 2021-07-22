@@ -32,7 +32,8 @@ make -j$(nproc) -l$(($(nproc)+1))
 make -j$(nproc) modules_install
 make -j$(nproc) install
 ```
-> **Warning!** Always set multiple jobs with load average to prevent hangs nor system freeze. Above will use "core/threads + 1".
+> **Warning!**  
+> Always set multiple jobs with load average to prevent hangs nor system freeze. Above will use "core/threads + 1".
 > 
 > Other options is compiling with [LLVM Toolchains](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO (enabled by default, but needs `LLVM_IAS=1`).  
 > **Note!** Its estimated that it may be longer than the GCC and Binutils,
