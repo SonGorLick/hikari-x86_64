@@ -24,9 +24,9 @@
 ```sh
 cp .config_kurisu .config
 
-make -j$(nproc) menuconfig
+make menuconfig
 
-nice -n -1 make -j$(nproc)
+make -j$(nproc) -l$(($(nproc)+1))
 
 # Install (modules and kernel)
 make -j$(nproc) modules_install
@@ -36,7 +36,7 @@ make -j$(nproc) install
 > **Note!** Its estimated that it may be longer than the GCC and Binutils,
 > but significally improving performance on specific CPU by using ThinLTO and optimization level 3 (enabled by default).
 > ```sh
-> nice -n -1 make LLVM=1 LLVM_IAS=1 -j$(nproc)
+> nice -n -1 make LLVM=1 LLVM_IAS=1 -j$(nproc) -l$(($(nproc)+1))
 > ```
 >   
 > ![ThinLTO](https://raw.githubusercontent.com/owl4ce/kurisu-x86_64/kurisu-x86_64/.github/screenshots/2021-06-29-062643_1301x748_scrot.png)
