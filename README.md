@@ -1,4 +1,4 @@
-## <p align="center">`5.13.2-kurisu-x86_64`</p>
+## <p align="center">`5.13.5-kurisu-x86_64`</p>
 
 <p align="center"><i>~ optimized for multitasking under heavy load (hopefully) ~</i></p>
 
@@ -85,13 +85,13 @@ dracut --kver <version> /boot/initramfs-<version>.img --force
 
 **With initramfs**
 ```sh
-efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --loader "\vmlinuz-5.13.2-kurisu-x86_64" \
--u "loglevel=4 initrd=\initramfs-5.13.2-kurisu-x86_64.img"
+efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --loader "\vmlinuz-5.13.5-kurisu-x86_64" \
+-u "loglevel=4 initrd=\initramfs-5.13.5-kurisu-x86_64.img"
 ```
 
 **Without initramfs**
 ```sh
-efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --loader "\vmlinuz-5.13.2-kurisu-x86_64" \
+efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --loader "\vmlinuz-5.13.5-kurisu-x86_64" \
 -u "root=PARTUUID=a157257a-6617-cd4c-b07f-2c33d4cb89f8 rootfstype=f2fs rootflags=active_logs=2,compress_algorithm=lz4 rw,noatime loglevel=4"
 ```
 
