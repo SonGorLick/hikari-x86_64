@@ -63,7 +63,8 @@ make -j$(nproc) install
 > CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER=y
 > ```
 > **: ᴘᴀᴛʜ**  
-> **:** `Device Drivers` -> `Graphics support` -> `Console display driver support`  
+> **:** `Device Drivers` -> `Graphics support` -> `Console display driver support`
+> 
 > This will disable the framebuffer logo that appears on boot.
 
 ##  
