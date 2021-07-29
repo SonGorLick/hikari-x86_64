@@ -37,7 +37,6 @@ make -j$(nproc) install
 
 > Other options is compiling with [LLVM toolchain](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO (enabled by default, but needs `LLVM_IAS=1`).
 
-> **Note!**  
 > Its estimated that it may be longer than the GCC and Binutils, but significally improving performance on specific CPU by using ThinLTO and optimization level 3 (enabled by default).
 > ```sh
 > make LLVM=1 LLVM_IAS=1 -j$(nproc) menuconfig
@@ -49,24 +48,17 @@ make -j$(nproc) install
 > ```
 >   
 > ![ThinLTO](https://raw.githubusercontent.com/owl4ce/kurisu-x86_64/kurisu-x86_64/.github/screenshots/2021-06-29-062643_1301x748_scrot.png)
->   
-> ```sh
-> CONFIG_LTO=y
-> CONFIG_LTO_CLANG=y
-> CONFIG_ARCH_SUPPORTS_LTO_CLANG=y
-> CONFIG_ARCH_SUPPORTS_LTO_CLANG_THIN=y
-> CONFIG_HAS_LTO_CLANG=y
-> # CONFIG_LTO_NONE is not set
-> # CONFIG_LTO_CLANG_FULL is not set
-> CONFIG_LTO_CLANG_THIN=y
-> ```
 
-> Recommended to compile with native CPU optimization ( `-march` ), auto detected by GCC or Clang.   
+> Recommended to build with native CPU optimization ( `-march` ), auto detected by GCC or Clang.   
 >   
 > ![-MARCH](https://raw.githubusercontent.com/owl4ce/kurisu-x86_64/kurisu-x86_64/.github/screenshots/2021-06-29-061857_1301x748_scrot.png)
 
+> **Note!**  
+> The framebuffer logo must be cleared before init runs, you can modify your init. I've only ever tried this on **runit** and **sysvinit**+**openrc**, other than that I don't know.
+> For example on **sysvinit**+**openrc** on Gentoo, I created a [wrapper script](https://github.com/owl4ce/hmg/blob/main/sbin/owl4ce-init) to run **openrc sysinit** (Runlevel 1). See [inittab](https://github.com/owl4ce/hmg/blob/main/etc/inittab#L19-L20).
+
 > If you find an area with a black background covering the console tty's font, please turn this on!  
-> It's basically caused by the framebuffer not being cleared before entering init.
+> This will disable the framebuffer logo that appears on boot. It's basically caused by the framebuffer not being cleared before entering init.
 > ```cfg  
 > CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER=y
 > ```
@@ -74,20 +66,12 @@ make -j$(nproc) install
 > **:** `Device Drivers` -> `Graphics support` -> `Console display driver support`
 
 ##  
-### Generate initramfs `if using`
-**Dracut**  
-Adjust <version> with the kernel version you compiled/use (as root)
-```sh
-dracut --kver <version> /boot/initramfs-<version>.img --force
-```
-
-##  
 ### How to convert my own FB logo?
-Simply install `netpbm`, then convert your own logo for example is `.png` extension into 224 colors 24-bit ASCII pixmap with the following command.
+Simply install `netpbm`, then convert your own logo for example is **.png** extension into 224 24-bit colors ASCII pixmap.
 
-> Generally, the Linux kernel logo size is **80**x**80** pixels, but if you want to adjust the full screen size, you have to set up your logo with a size that matches your screen resolution e.g **1366**x**768**.
+> Generally, the Linux kernel FB logo size is **80**x**80** pixels, but if you want to adjust the full screen size, you have to set up your logo with a size that matches your screen resolution e.g **1366**x**768**.
 
-> Below will replace the default Linux logo with our custom logo. Initially I made a patch, but I think it's less effective because it's enough to replace and build the kernel.
+> Below will replace the default Linux logo with our custom logo. Initially I made a patch, but I think it's less effective because it's enough to replace then build the kernel.
 ```sh
 pngtopnm /path/yourlogo.png | ppmquant -fs 223 | pnmtoplainpnm > logo_linux_clut224.ppm
 
@@ -101,8 +85,16 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 > If you want silent boot, simply use `quiet` instead.
 
 ##  
+### Generate initramfs `if using`
+**Dracut**  
+Adjust <version> with the kernel version that you build, run the following commands as root.
+```sh
+dracut --kver <version> /boot/initramfs-<version>.img --force
+```
+
+##  
 ### EFI Stub Examples
-You must have a separate `/boot` partition with partition type vfat (fat32), and run one of the two commands below as root.
+You must have separate `/boot` partition with partition type vfat, then run one of the two commands below as root.
 
 **With initramfs**
 ```sh
