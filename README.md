@@ -34,8 +34,9 @@ make -j$(nproc) install
 ```
 > **Warning!**  
 > Always set multiple jobs with load average to prevent hangs nor system freeze. Above will use "core/threads + 1".
-> 
-> Other options is compiling with [LLVM toolchain](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO (enabled by default, but needs `LLVM_IAS=1`).  
+
+> Other options is compiling with [LLVM toolchain](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO (enabled by default, but needs `LLVM_IAS=1`).
+
 > **Note!**  
 > Its estimated that it may be longer than the GCC and Binutils, but significally improving performance on specific CPU by using ThinLTO and optimization level 3 (enabled by default).
 > ```sh
@@ -60,11 +61,12 @@ make -j$(nproc) install
 > CONFIG_LTO_CLANG_THIN=y
 > ```
 
-> Recommended to compile with native CPU optimization or called `-march`, auto detected by GCC or Clang.   
+> Recommended to compile with native CPU optimization ( `-march` ), auto detected by GCC or Clang.   
 >   
 > ![-MARCH](https://raw.githubusercontent.com/owl4ce/kurisu-x86_64/kurisu-x86_64/.github/screenshots/2021-06-29-061857_1301x748_scrot.png)
 
 > If you find an area with a black background covering the console tty's font, please turn this on!  
+> It's basically caused by the framebuffer not being cleared before entering init.
 > ```cfg  
 > CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER=y
 > ```
@@ -80,8 +82,27 @@ dracut --kver <version> /boot/initramfs-<version>.img --force
 ```
 
 ##  
-### EFI Stub example `/boot vfat`
-(as root)  
+### How to convert my own FB logo?
+Simply install `netpbm`, then convert your own logo for example is `.png` extension into 224 colors 24-bit ASCII pixmap with the following command.
+
+> Generally, the Linux kernel logo size is **80**x**80** pixels, but if you want to adjust the full screen size, you have to set up your logo with a size that matches your screen resolution e.g **1366**x**768**.
+
+> Below will replace the default Linux logo with our custom logo. Initially I made a patch, but I think it's less effective because it's enough to replace and build the kernel.
+```sh
+pngtopnm /path/yourlogo.png | ppmquant -fs 223 | pnmtoplainpnm > logo_linux_clut224.ppm
+
+doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_clut224.ppm
+```
+
+> In order for the logo to appear on boot, make sure to use `loglevel=4` in the [kernel parameters](https://wiki.archlinux.org/index.php/Kernel_parameters).
+
+<p align="center"><img src="https://i.ibb.co/1T0rYL4/final.gif"/></p>
+
+> If you want silent boot, simply use `quiet` instead.
+
+##  
+### EFI Stub Examples
+You must have a separate `/boot` partition with partition type vfat (fat32), and run one of the two commands below as root.
 
 **With initramfs**
 ```sh
@@ -94,11 +115,5 @@ efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --lo
 efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --loader "\vmlinuz-5.13.5-kurisu-x86_64" \
 -u "root=PARTUUID=a157257a-6617-cd4c-b07f-2c33d4cb89f8 rootfstype=f2fs rootflags=active_logs=2,compress_algorithm=lz4 rw,noatime loglevel=4"
 ```
-
-> In order for the logo to appear on boot, make sure to use `loglevel=4` in the [kernel parameters](https://wiki.archlinux.org/index.php/Kernel_parameters).
-
-<p align="center"><img src="https://i.ibb.co/1T0rYL4/final.gif"/></p>
-
-> If you want silent boot, simply use `quiet` instead.
 
 ###### <p align="right">[`backup_gentoo_config`](https://github.com/owl4ce/hold-my-gentoo)</p>
