@@ -55,7 +55,7 @@ make -j$(nproc) install
 
 > **Note!**  
 > The framebuffer logo must be cleared before init runs, you can modify your init. I've only ever tried this on **runit** and **sysvinit**+**openrc**, other than that I don't know.
-> For example on **sysvinit**+**openrc** on Gentoo, I created a [wrapper script](https://github.com/owl4ce/hmg/blob/main/sbin/owl4ce-init) to run **openrc sysinit** (Runlevel 1). See [inittab](https://github.com/owl4ce/hmg/blob/main/etc/inittab#L19-L20).
+> For example is **sysvinit**+**openrc** on Gentoo/Linux, I created a [wrapper script](https://github.com/owl4ce/hmg/blob/main/sbin/owl4ce-init) to run **openrc sysinit** (Runlevel 1). See my [inittab](https://github.com/owl4ce/hmg/blob/main/etc/inittab#L19-L20).
 
 > **If you find an area with a black background covering the console tty's font, please turn this on!**  
 > It's basically caused by the framebuffer not being cleared before entering init.  
@@ -71,9 +71,9 @@ make -j$(nproc) install
 ### How to convert my own FB logo?
 Simply install `netpbm`, then convert your own logo for example is **.png** extension into 224 24-bit colors ASCII pixmap.
 
-> Generally, the Linux kernel FB logo size is **80**x**80** pixels, but if you want to adjust the full screen size, you have to set up your logo with a size that matches your screen resolution e.g **1366**x**768**.
+> Generally, the Linux kernel framebuffer logo size is **80**x**80** pixels, but if you want to adjust the full screen size, you have to set up your logo with a size that matches your screen resolution e.g **1366**x**768**.
 
-> Below will replace the default Linux logo with our custom logo. Initially I made a patch, but I think it's less effective because it's enough to replace then build the kernel.
+Below will replace the default Tux logo with our custom logo. Initially I made a patch, but I think it's less effective because it's enough to replace then build the kernel.
 ```sh
 pngtopnm /path/yourlogo.png | ppmquant -fs 223 | pnmtoplainpnm > logo_linux_clut224.ppm
 
@@ -87,7 +87,7 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 > If you want silent boot, simply use `quiet` instead.
 
 ##  
-### Generate initramfs `if using`
+### Generate the initramfs (if using)
 **Dracut**  
 Adjust <version> with the kernel version that you build, run the following commands as root.
 ```sh
@@ -96,14 +96,12 @@ dracut --kver <version> /boot/initramfs-<version>.img --force
 
 ##  
 ### EFI Stub Examples
-You must have separate `/boot` partition with partition type vfat, then run one of the two commands below as root.
-
+You must have separate `/boot` partition with partition type **vfat**, then run one of the two commands below as root.  
 **With initramfs**
 ```sh
 efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --loader "\vmlinuz-_KVER_" \
 -u "loglevel=4 initrd=\initramfs-_KVER_.img"
 ```
-
 **Without initramfs**
 ```sh
 efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --loader "\vmlinuz-_KVER_" \
