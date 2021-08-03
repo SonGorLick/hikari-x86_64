@@ -26,14 +26,14 @@ cp .config_kurisu .config
 
 make -j$(nproc) menuconfig
 
-make -j$(nproc) -l$(($(nproc)+1))
+make -j$(nproc) -l$(nproc)
 
 # Install (modules and kernel)
 make -j$(nproc) modules_install
 make -j$(nproc) install
 ```
 > **Warning!**  
-> Always set multiple jobs with load average to prevent hangs nor system freeze. Above will use "core/threads + 1".
+> Always set multiple jobs with load average to prevent hangs nor system freeze. Above will use total of host's core/threads.
 
 > Other options is compiling with [LLVM toolchain](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO (enabled by default, but needs `LLVM_IAS=1`).
 
@@ -41,7 +41,7 @@ make -j$(nproc) install
 > ```sh
 > make LLVM=1 LLVM_IAS=1 -j$(nproc) menuconfig
 > 
-> make LLVM=1 LLVM_IAS=1 -j$(nproc) -l$(($(nproc)+1))
+> make LLVM=1 LLVM_IAS=1 -j$(nproc) -l$(nproc)
 > 
 > make LLVM=1 LLVM_IAS=1 -j$(nproc) modules_install
 > make LLVM=1 LLVM_IAS=1 -j$(nproc) install
