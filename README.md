@@ -33,10 +33,10 @@ make -j$(nproc) modules_install
 make -j$(nproc) install
 ```
 > **Warning!**  
-> If you want multitasking responsiveness, always set multiple jobs with load average to prevent slowdowned system.
+> If you want multitasking responsiveness when using multiple jobs, set the load average to prevent slowdowned system.
 
-> Other options is compiling with [LLVM toolchain](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO ( enabled by default, but needs `LLVM_IAS=1` ).
-
+> Other options is compiling with [LLVM toolchain](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO ( enabled by default, but needs `LLVM_IAS=1` ).  
+> 
 > Its estimated that it may be longer than the GCC and Binutils, but significally improving performance on specific CPU by using ThinLTO and optimization level 3 ( enabled by default ).
 > ```sh
 > make LLVM=1 LLVM_IAS=1 -j$(nproc) menuconfig
@@ -88,14 +88,12 @@ make -j$(nproc) install
 > sed -i 's|si::sysinit:/sbin/openrc sysinit|si::sysinit:/sbin/owl4ce-init|' /etc/inittab
 
 > **Or, if you don't care about framebuffer logo ..**  
-> Simply enable this.
+> Simply enable this to disable the framebuffer logo that appears on boot.
 > ```cfg  
 > CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER=y
 > ```
 > **: ᴘᴀᴛʜ**  
 > **:** `Device Drivers` -> `Graphics support` -> `Console display driver support`
-> 
-> This will disable the framebuffer logo that appears on boot.
 
 ##  
 ### How to convert my own FB logo?
