@@ -19,7 +19,7 @@
 - [Kurisu Makise『牧瀬 紅莉栖』](./kernel.sources/drivers/video/logo/logo_linux_clut224.ppm) <kbd>1366x768</kbd>
 
 ##  
-**Gentoo/Linux** (as root, required pkg: *cpio*, *lz4*)  
+**Gentoo/Linux** ( as root, required pkgs: `cpio` `lz4` )  
 `/usr/src/linux`
 ```sh
 cp .config_kurisu .config
@@ -33,7 +33,7 @@ make -j$(nproc) modules_install
 make -j$(nproc) install
 ```
 > **Warning!**  
-> If you want multitasking responsiveness when using multiple jobs, set the load average to prevent slowdowned system.
+> If you want multitasking responsiveness when using multiple jobs, set the load average to prevent slowdowned system ( or maybe even up to OOM ).
 
 > Other options is compiling with [LLVM toolchain](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO ( enabled by default, but needs `LLVM_IAS=1` ).  
 > 
@@ -136,4 +136,4 @@ efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --lo
 -u "root=PARTUUID=a157257a-6617-cd4c-b07f-2c33d4cb89f8 rootfstype=f2fs rootflags=active_logs=2,compress_algorithm=lz4,compress_extension=*,compress_cache,atgc rw,noatime loglevel=4"
 ```
 
-###### <p align="right">[`backup_gentoo_config`](https://github.com/owl4ce/hold-my-gentoo)</p>
+###### <p align="center">[`backup_gentoo_config`](https://github.com/owl4ce/hold-my-gentoo)</p>
