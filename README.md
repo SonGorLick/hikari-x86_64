@@ -37,7 +37,7 @@ make -j$(nproc) install
 
 > Other options is compiling with [LLVM toolchain](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO ( enabled by default, but needs `LLVM_IAS=1` ).  
 > 
-> Its estimated that it may be longer than the GCC and Binutils, but significally improving performance on specific CPU by using ThinLTO and optimization level 3 ( enabled by default ).
+> Its estimated that it may be longer than the GCC and Binutils, but significally improving performance on specific CPU by using ThinLTO and optimization level 3 ( enabled by default ). This also uses less memory than GCC.
 > ```sh
 > make LLVM=1 LLVM_IAS=1 -j$(nproc) menuconfig
 > 
