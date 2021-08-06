@@ -25,12 +25,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
         run: |
           export README_md="$(cat ./.github/README.md.tpl)"
-          export COMMIT_ms="$(echo "${{ env.GIT_COMMIT_MESSAGE_BODY }}" | head -n1)"
+          export COMMIT_ms="$(echo "${{ env.GIT_COMMIT_MESSAGE_BODY }}" | sed 1q)"
           if [[ "$COMMIT_ms" = *"x86_64"* ]]; then
-             printf "%s\n" "$README_md" | sed "s/_KVER_/$COMMIT_ms/" > ./README.md
-          elif [[ "${{ env.GIT_COMMIT_MESSAGE_SUBJECT }}" = "Update README.md.tpl" ]]; then
+             printf "%s\n" "$README_md" | sed "s|_KVER_|${COMMIT_ms}|g" > ./README.md
+          elif [[ "${{ env.GIT_COMMIT_MESSAGE_SUBJECT }}" = *"README.md.tpl"* ]]; then
              export KVER_sign="$(grep -oP '## .*>`\K[^`</p>]+' ./README.md)"
-             printf "%s\n" "$README_md" | sed "s/_KVER_/$KVER_sign/" > ./README.md
+             printf "%s\n" "$README_md" | sed "s|_KVER_|${KVER_sign}|g" > ./README.md
           fi
 
       - uses: stefanzweifel/git-auto-commit-action@v4
