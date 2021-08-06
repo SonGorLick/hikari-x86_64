@@ -53,9 +53,37 @@ make -j$(nproc) install
 >   
 > ![-MARCH](https://raw.githubusercontent.com/owl4ce/kurisu-x86_64/kurisu-x86_64/.github/screenshots/2021-06-29-061857_1301x748_scrot.png)
 
-> **Note!**  
+> **Note!** (if you're using custom of FB logo, like mine)  
+> Read also about [how to convert my own FB logo](#how-to-convert-my-own-fb-logo).  
 > The framebuffer logo must be cleared before init runs, you can modify your init. I've only ever tried this on **runit** and **sysvinit**+**openrc**, other than that I don't know.
 > For example is **sysvinit**+**openrc** on Gentoo/Linux, I created a [wrapper script](https://github.com/owl4ce/hmg/blob/main/sbin/owl4ce-init) to execute curses **clear** command before executing **openrc sysinit** (Runlevel 1). See my [inittab](https://github.com/owl4ce/hmg/blob/main/etc/inittab#L19-L20).
+
+> **Warning:** Below is an example, my trick.
+> ```sh
+> cat > /sbin/owl4ce-init << "EOF"
+> #!/bin/sh
+> LC_ALL=C LANG=C; W="\033[1;37m" R="\033[1;31m" G="\033[1;32m" NC="\033[0m"
+> 
+> INIT="/sbin/openrc sysinit"
+> 
+> kern() { printf " ${G}* ${W}Booting with ${R}$(uname -r) "; }
+> dots() {
+>     for X in $(seq 1 4); do
+>         if [ "$X" -gt 1 ]; then
+>             printf "${W}.${NC}"
+>         fi
+>         sleep .1s
+>     done
+> }
+> 
+> kern; dots; clear; exec ${INIT}; exit $?
+> EOF
+> ```
+> ```sh
+> chmod +x /sbin/owl4ce-init
+> ```
+> ```sh
+> sed -i 's|si::sysinit:/sbin/openrc sysinit|si::sysinit:/sbin/owl4ce-init|' /etc/inittab
 
 > **If you find an area with a black background covering the console tty's font, please turn this on!**  
 > It's basically caused by the framebuffer not being cleared before entering init.
