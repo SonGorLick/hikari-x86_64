@@ -116,11 +116,12 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 > If you want silent boot, simply use `quiet` instead.
 
 ##  
-### Generate the initramfs ( if using )
+### Generate the initramfs
+> If using.
 **Dracut**  
 Adjust version of the kernel that you build. Below is an example, run the following commands as root.
 ```sh
-dracut --kver 5.13.8-kurisu-x86_64 /boot/initramfs-_KVER_.img --force
+dracut --kver 5.13.8-kurisu-x86_64 /boot/initramfs-5.13.8-kurisu-x86_64.img --force
 ```
 
 ##  
