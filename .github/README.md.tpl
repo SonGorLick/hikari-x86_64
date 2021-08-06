@@ -33,7 +33,7 @@ make -j$(nproc) modules_install
 make -j$(nproc) install
 ```
 > **Warning!**  
-> Always set multiple jobs with load average to prevent hangs nor system freeze. Above will use total of host's core/threads.
+> If you want multitasking responsiveness, always set multiple jobs with load average ( `-l<num>` ) to prevent hangs nor system freeze.
 
 > Other options is compiling with [LLVM toolchain](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO (enabled by default, but needs `LLVM_IAS=1`).
 
@@ -53,12 +53,13 @@ make -j$(nproc) install
 >   
 > ![-MARCH](https://raw.githubusercontent.com/owl4ce/kurisu-x86_64/kurisu-x86_64/.github/screenshots/2021-06-29-061857_1301x748_scrot.png)
 
-> **Note!** (if you're using custom of FB logo, like mine)  
-> Read also about [how to convert my own FB logo](#how-to-convert-my-own-fb-logo).  
-> The framebuffer logo must be cleared before init runs, you can modify your init. I've only ever tried this on **runit** and **sysvinit**+**openrc**, other than that I don't know.
-> For example is **sysvinit**+**openrc** on Gentoo/Linux, I created a [wrapper script](https://github.com/owl4ce/hmg/blob/main/sbin/owl4ce-init) to execute curses **clear** command before executing **openrc sysinit** (Runlevel 1). See my [inittab](https://github.com/owl4ce/hmg/blob/main/etc/inittab#L19-L20).
+##  
 
-> **Warning:** Below is an example, my trick.
+> **Note! If you're using custom framebuffer logo like mine**  
+> The framebuffer logo must be cleared before init runs, you can modify your init. I've only ever tried this on **runit** and **sysvinit**+**openrc**, other than that I don't know.
+> For example is **sysvinit**+**openrc** on Gentoo/Linux, I created a [wrapper script](https://github.com/owl4ce/hmg/blob/main/sbin/owl4ce-init) to execute curses **clear** command before executing **openrc sysinit** (Runlevel 1). See my [inittab](https://github.com/owl4ce/hmg/blob/main/etc/inittab#L19-L20).  
+> 
+> **Below is an example (my trick):** Warning!
 > ```sh
 > cat > /sbin/owl4ce-init << "EOF"
 > #!/bin/sh
@@ -85,8 +86,7 @@ make -j$(nproc) install
 > ```sh
 > sed -i 's|si::sysinit:/sbin/openrc sysinit|si::sysinit:/sbin/owl4ce-init|' /etc/inittab
 
-> **If you find an area with a black background covering the console tty's font, please turn this on!**  
-> It's basically caused by the framebuffer not being cleared before entering init.
+> **Or, if you don't care about framebuffer logo:** Simply enable this.
 > ```cfg  
 > CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER=y
 > ```
