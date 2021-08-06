@@ -118,6 +118,7 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 ##  
 ### Generate the initramfs
 > If using.
+
 **Dracut**  
 Adjust version of the kernel that you build. Below is an example, run the following commands as root.
 ```sh
