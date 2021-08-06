@@ -33,11 +33,11 @@ make -j$(nproc) modules_install
 make -j$(nproc) install
 ```
 > **Warning!**  
-> If you want multitasking responsiveness, always set multiple jobs with load average to prevent hangs nor system freeze.
+> If you want multitasking responsiveness, always set multiple jobs with load average to prevent slowdowned system.
 
-> Other options is compiling with [LLVM toolchain](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO (enabled by default, but needs `LLVM_IAS=1`).
+> Other options is compiling with [LLVM toolchain](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO ( enabled by default, but needs `LLVM_IAS=1` ).
 
-> Its estimated that it may be longer than the GCC and Binutils, but significally improving performance on specific CPU by using ThinLTO and optimization level 3 (enabled by default).
+> Its estimated that it may be longer than the GCC and Binutils, but significally improving performance on specific CPU by using ThinLTO and optimization level 3 ( enabled by default ).
 > ```sh
 > make LLVM=1 LLVM_IAS=1 -j$(nproc) menuconfig
 > 
@@ -56,8 +56,8 @@ make -j$(nproc) install
 ##  
 
 > **Note!**  
-> > If you're using custom framebuffer logo like mine.  
-> The framebuffer logo must be cleared before init runs, you can modify your init. I've only ever tried this on **runit** and **sysvinit**+**openrc**, other than that I don't know.
+> If you're using custom framebuffer logo like mine.  
+> > The framebuffer logo must be cleared before init runs, you can modify your init. I've only ever tried this on **runit** and **sysvinit**+**openrc**, other than that I don't know.
 > For example is **sysvinit**+**openrc** on Gentoo/Linux, I created a [wrapper script](https://github.com/owl4ce/hmg/blob/main/sbin/owl4ce-init) to execute curses **clear** command before executing **openrc sysinit** (Runlevel 1). See my [inittab](https://github.com/owl4ce/hmg/blob/main/etc/inittab#L19-L20).  
 > 
 > **Below is an example of my trick ..**
