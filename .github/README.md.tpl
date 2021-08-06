@@ -60,7 +60,8 @@ make -j$(nproc) install
 > > The framebuffer logo must be cleared before init runs, you can modify your init. I've only ever tried this on **runit** and **sysvinit**+**openrc**, other than that I don't know.
 > For example is **sysvinit**+**openrc** on Gentoo/Linux, I created a [wrapper script](https://github.com/owl4ce/hmg/blob/main/sbin/owl4ce-init) to execute curses **clear** command before executing **openrc sysinit** (Runlevel 1). See my [inittab](https://github.com/owl4ce/hmg/blob/main/etc/inittab#L19-L20).  
 > 
-> **Below is an example of my trick ..**
+> **Below is an example of my trick ..**  
+> Run the following commands as root.
 > ```sh
 > cat > /sbin/owl4ce-init << "EOF"
 > #!/bin/sh
@@ -87,7 +88,7 @@ make -j$(nproc) install
 > ```sh
 > sed -i 's|si::sysinit:/sbin/openrc sysinit|si::sysinit:/sbin/owl4ce-init|' /etc/inittab
 
-> **Or, if you don't care about framebuffer logo ..**  
+> **Or, if you're actually don't care about framebuffer logo ..**  
 > Simply enable this to disable the framebuffer logo that appears on boot.
 > ```cfg  
 > CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER=y
@@ -96,7 +97,7 @@ make -j$(nproc) install
 > **:** `Device Drivers` -> `Graphics support` -> `Console display driver support`
 
 ##  
-### How to convert my own FB logo?
+### How to convert my own framebuffer logo?
 Simply install `netpbm`, then convert your own logo for example is **.png** extension into 224 24-bit colors ASCII pixmap.
 
 > Generally, the Linux kernel framebuffer logo size is **80**x**80** pixels, but if you want to adjust the full screen size, you have to set up your logo with a size that matches your screen resolution e.g **1366**x**768**.
@@ -115,11 +116,11 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 > If you want silent boot, simply use `quiet` instead.
 
 ##  
-### Generate the initramfs (if using)
+### Generate the initramfs ( if using )
 **Dracut**  
-Adjust <version> with the kernel version that you build, run the following commands as root.
+Adjust version of the kernel that you build. Below is an example, run the following commands as root.
 ```sh
-dracut --kver <version> /boot/initramfs-<version>.img --force
+dracut --kver _KVER_ /boot/initramfs-_KVER_.img --force
 ```
 
 ##  
