@@ -33,7 +33,7 @@ make -j$(nproc) modules_install
 make -j$(nproc) install
 ```
 > **Warning!**  
-> If you want multitasking responsiveness, always set multiple jobs with load average ( `-l<num>` ) to prevent hangs nor system freeze.
+> If you want multitasking responsiveness, always set multiple jobs with load average to prevent hangs nor system freeze.
 
 > Other options is compiling with [LLVM toolchain](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO (enabled by default, but needs `LLVM_IAS=1`).
 
@@ -49,17 +49,18 @@ make -j$(nproc) install
 >   
 > ![ThinLTO](https://raw.githubusercontent.com/owl4ce/kurisu-x86_64/kurisu-x86_64/.github/screenshots/2021-06-29-062643_1301x748_scrot.png)
 
-> Recommended to build with native CPU optimization ( `-march` ), auto detected by GCC or Clang.   
+> Recommended to build with native CPU optimization, auto detected by GCC or Clang.   
 >   
 > ![-MARCH](https://raw.githubusercontent.com/owl4ce/kurisu-x86_64/kurisu-x86_64/.github/screenshots/2021-06-29-061857_1301x748_scrot.png)
 
 ##  
 
-> **Note! If you're using custom framebuffer logo like mine**  
+> **Note!**  
+> > If you're using custom framebuffer logo like mine.  
 > The framebuffer logo must be cleared before init runs, you can modify your init. I've only ever tried this on **runit** and **sysvinit**+**openrc**, other than that I don't know.
 > For example is **sysvinit**+**openrc** on Gentoo/Linux, I created a [wrapper script](https://github.com/owl4ce/hmg/blob/main/sbin/owl4ce-init) to execute curses **clear** command before executing **openrc sysinit** (Runlevel 1). See my [inittab](https://github.com/owl4ce/hmg/blob/main/etc/inittab#L19-L20).  
 > 
-> **Below is an example (my trick):** Warning!
+> **Below is an example of my trick ..**
 > ```sh
 > cat > /sbin/owl4ce-init << "EOF"
 > #!/bin/sh
@@ -86,7 +87,8 @@ make -j$(nproc) install
 > ```sh
 > sed -i 's|si::sysinit:/sbin/openrc sysinit|si::sysinit:/sbin/owl4ce-init|' /etc/inittab
 
-> **Or, if you don't care about framebuffer logo:** Simply enable this.
+> **Or, if you don't care about framebuffer logo ..**  
+> Simply enable this.
 > ```cfg  
 > CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER=y
 > ```
