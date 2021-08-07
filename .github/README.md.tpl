@@ -3,7 +3,7 @@
 <p align="center"><i>~ optimized for multitasking under heavy load (hopefully) ~</i></p>
 
 ## [Kernel sources](./kernel.sources) <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/kurisu-x86_64?style=flat-square&label=&color=000000&logo=GitHub&logoColor=white&labelColor=373e4d"/>
-<a href="#kernel-sources"><img alt="logo" align="right" width="439px" src="https://i.ibb.co/TYdw4Md/kurisu.png"/></a>
+<a href="#kernel-sources"><img alt="logo" align="right" width="439px" src="https://i.imgur.com/YSZAzT8.png"/></a>
 
 - 500Hz tick rate
 - EFI Stub supports
@@ -111,7 +111,7 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 
 > In order for the logo to appear on boot, make sure to use `loglevel=4` in the [kernel parameters](https://wiki.archlinux.org/index.php/Kernel_parameters).
 
-<p align="center"><img src="https://i.ibb.co/1T0rYL4/final.gif"/></p>
+<p align="center"><img src="https://i.imgur.com/R82KVaB.gifv"/></p>
 
 > If you want silent boot, simply use `quiet` instead.
 
