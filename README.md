@@ -136,7 +136,7 @@ efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --lo
 **Without initramfs**
 ```sh
 efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --loader "\vmlinuz-5.13.8-kurisu-x86_64" \
--u "root=PARTUUID=a157257a-6617-cd4c-b07f-2c33d4cb89f8 rootflags=background_gc=sync,gc_merge,active_logs=2,compress_algorithm=lz4,compress_extension=*,compress_chksum rw,noatime loglevel=4"
+-u "root=PARTUUID=a157257a-6617-cd4c-b07f-2c33d4cb89f8 rootfstype=f2fs rootflags=background_gc=sync,gc_merge,active_logs=2,compress_algorithm=lz4,compress_extension=*,compress_chksum rw,noatime loglevel=4"
 ```
 
 ###### <p align="center">[`backup_gentoo_config`](https://github.com/owl4ce/hold-my-gentoo)</p>
