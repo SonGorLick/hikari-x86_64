@@ -111,7 +111,7 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 
 > In order for the logo to appear on boot, make sure to use `loglevel=4` in the [kernel parameters](https://wiki.archlinux.org/index.php/Kernel_parameters).
 
-<p align="center"><img src="https://i.imgur.com/R82KVaB.gifv"/></p>
+<p align="center"><img src="https://i.imgur.com/R82KVaB.gif"/></p>
 
 > If you want silent boot, simply use `quiet` instead.
 
