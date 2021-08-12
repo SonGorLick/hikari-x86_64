@@ -32,7 +32,7 @@ make -j$(nproc) -l$(nproc)
 make -j$(nproc) modules_install
 make -j$(nproc) install
 ```
-> **Warning!**  
+> #### Warning!
 > If you want multitasking responsiveness when using multiple jobs, set the load average to prevent slowdowned system ( or maybe even up to OOM ).
 
 > Other options is compiling with [LLVM toolchain](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO ( enabled by default, but needs `LLVM_IAS=1` ).  
@@ -55,7 +55,7 @@ make -j$(nproc) install
 
 ##  
 
-> **Note!**  
+> #### Note!
 > If you're using custom framebuffer logo like mine.  
 > > The framebuffer logo must be cleared before init runs, you can modify your init. I've only ever tried this on **runit** and **sysvinit**+**openrc**, other than that I don't know.
 > For example is **sysvinit**+**openrc** on Gentoo/Linux, I created a [wrapper script](https://github.com/owl4ce/hmg/blob/main/sbin/owl4ce-init) to execute curses **clear** command before executing **openrc sysinit** (Runlevel 1). See my [inittab](https://github.com/owl4ce/hmg/blob/main/etc/inittab#L19-L20).  
@@ -102,7 +102,7 @@ Simply install `netpbm`, then convert your own logo for example is **.png** exte
 
 > Generally, the Linux kernel framebuffer logo size is **80**x**80** pixels, but if you want to adjust the full screen size, you have to set up your logo with a size that matches your screen resolution e.g **1366**x**768**.
 
-Below will replace the default Tux logo with our custom logo. Initially I made a patch, but I think it's less effective because it's enough to replace then build the kernel.
+Below will replace the default Tux logo with our custom logo. ~Initially I made a patch, but I think it's less effective because it's enough to replace then build the kernel.~ Created [linucc224](https://github.com/owl4ce/linucc224) for auto-patchig. :tada:
 ```sh
 pngtopnm /path/yourlogo.png | ppmquant -fs 223 | pnmtoplainpnm > logo_linux_clut224.ppm
 
