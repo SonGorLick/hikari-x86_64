@@ -142,6 +142,6 @@ efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --lo
 ##  
 ### Acknowledgements
 * All Linux Kernel Developers and Contributors
-* [Alexandre Frade](https://github.com/xanmod) <kbd>Linux-Xanmod Maintainer</kbd>
-* [Hamad Al Marri](https://github.com/hamadmarri) <kbd>CacULE Scheduler Author</kbd>
-* [src_prepare Group](https://src_prepare.gitlab.io) <kbd>Systems Developers, especially Gentoo/Linux</kbd>
+* [Alexandre Frade](https://github.com/xanmod) as Linux-Xanmod Maintainer
+* [Hamad Al Marri](https://github.com/hamadmarri) as CacULE Scheduler Author
+* [src_prepare Group](https://src_prepare.gitlab.io), Systems Developers ( especially Gentoo/Linux )
