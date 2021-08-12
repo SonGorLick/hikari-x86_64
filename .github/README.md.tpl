@@ -102,7 +102,7 @@ Simply install `netpbm`, then convert your own logo for example is **.png** exte
 
 > Generally, the Linux kernel framebuffer logo size is **80**x**80** pixels, but if you want to adjust the full screen size, you have to set up your logo with a size that matches your screen resolution e.g **1366**x**768**.
 
-Below will replace the default Tux logo with our custom logo. ~Initially I made a patch, but I think it's less effective because it's enough to replace then build the kernel.~ Created [linucc224](https://github.com/owl4ce/linucc224) for auto-patchig. :tada:
+Below will replace the default Tux logo with our custom logo. ~Initially I made a patch, but I think it's less effective because it's enough to replace then build the kernel.~ Created [linucc224](https://github.com/owl4ce/linucc224) for auto-patching. :tada:
 ```sh
 pngtopnm /path/yourlogo.png | ppmquant -fs 223 | pnmtoplainpnm > logo_linux_clut224.ppm
 
