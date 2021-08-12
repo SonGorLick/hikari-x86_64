@@ -104,7 +104,7 @@ Simply install `netpbm`, then convert your own logo for example is **.png** exte
 
 Below will replace the default Tux logo with our custom logo. ~Initially I made a patch, but I think it's less effective because it's enough to replace then build the kernel.~ Created [linucc224](https://github.com/owl4ce/linucc224) for auto-patching. :tada:
 ```sh
-pngtopnm /path/yourlogo.png | ppmquant -fs 223 | pnmtoplainpnm > logo_linux_clut224.ppm
+pngtopnm /path/to/your_logo.png | ppmquant -fs 223 | pnmtoplainpnm > logo_linux_clut224.ppm
 
 doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_clut224.ppm
 ```
@@ -141,7 +141,7 @@ efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --lo
 
 ##  
 ### Acknowledgements
-* All Linux Kernel Developers and Contributors
-* [Alexandre Frade](https://github.com/xanmod) as Linux-Xanmod Maintainer
-* [Hamad Al Marri](https://github.com/hamadmarri) as CacULE Scheduler Author
-* [src_prepare Group](https://src_prepare.gitlab.io), Systems Developers ( especially Gentoo/Linux )
+* All Linux Kernel Developers and Contributors;
+* [Alexandre Frade](https://github.com/xanmod) as Linux-Xanmod Maintainer;
+* [Hamad Al Marri](https://github.com/hamadmarri) as CacULE Scheduler Author;
+* [src_prepare Group](https://src_prepare.gitlab.io) the home of Systems Developers especially Gentoo/Linux.
