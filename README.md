@@ -139,4 +139,9 @@ efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --lo
 -u "root=PARTUUID=a157257a-6617-cd4c-b07f-2c33d4cb89f8 rootfstype=f2fs rootflags=background_gc=sync,gc_merge,active_logs=2,compress_algorithm=lz4,compress_extension=*,compress_chksum rw,noatime loglevel=4"
 ```
 
-###### <p align="center">[`backup_gentoo_config`](https://github.com/owl4ce/hold-my-gentoo)</p>
+##  
+### Acknowledgements
+* All Linux Kernel Developers and Contributors
+* [Alexandre Frade](https://github.com/xanmod) <kbd>Linux-Xanmod Maintainer</kbd>
+* [Hamad Al Marri](https://github.com/hamadmarri) <kbd>CacULE Scheduler Author</kbd>
+* [src_prepare Group](https://src_prepare.gitlab.io) <kbd>Systems Developers, especially Gentoo/Linux</kbd>
