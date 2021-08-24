@@ -58,12 +58,12 @@ make -j$(nproc) install
 > #### Note!
 > If you're using custom framebuffer logo like mine.  
 > > The framebuffer logo must be cleared before init runs, you can modify your init. I've only ever tried this on **runit** and **sysvinit**+**openrc**, other than that I don't know.
-> For example is **sysvinit**+**openrc** on Gentoo/Linux, I created a [wrapper script](https://github.com/owl4ce/hmg/blob/main/sbin/owl4ce-init) to execute curses **clear** command before executing **openrc sysinit** (Runlevel 1). See my [inittab](https://github.com/owl4ce/hmg/blob/main/etc/inittab#L19-L20).  
+> For example is **sysvinit**+**openrc** on Gentoo/Linux, I created a [wrapper script](https://github.com/owl4ce/hmg/blob/main/sbin/localh3art-init) to execute curses **clear** command before executing **openrc sysinit** (Runlevel 1). See my [inittab](https://github.com/owl4ce/hmg/blob/main/etc/inittab#L19-L20).  
 > 
 > **Below is an example of my trick ..**  
 > Run the following commands as root.
 > ```sh
-> cat > /sbin/owl4ce-init << "EOF"
+> cat > /sbin/localh3art-init << "EOF"
 > #!/bin/sh
 > LC_ALL=C LANG=C; W="\033[1;37m" R="\033[1;31m" G="\033[1;32m" NC="\033[0m"
 > 
@@ -76,17 +76,17 @@ make -j$(nproc) install
 >             printf "${W}.${NC}"
 >         fi
 >         sleep .1s
->     done
+>     done && unset X
 > }
 > 
 > kern; dots; clear; exec ${INIT}; exit $?
 > EOF
 > ```
 > ```sh
-> chmod +x /sbin/owl4ce-init
+> chmod +x /sbin/localh3art-init
 > ```
 > ```sh
-> sed -i 's|si::sysinit:/sbin/openrc sysinit|si::sysinit:/sbin/owl4ce-init|' /etc/inittab
+> sed -i 's|si::sysinit:/sbin/openrc sysinit|si::sysinit:/sbin/localh3art-init|' /etc/inittab
 
 > **Or, if you're actually don't care about framebuffer logo ..**  
 > Simply enable this to disable the framebuffer logo that appears on boot.
@@ -144,4 +144,4 @@ efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --lo
 * All Linux Kernel Developers and Contributors;
 * [Alexandre Frade](https://github.com/xanmod) as Linux-Xanmod Maintainer;
 * [Hamad Al Marri](https://github.com/hamadmarri) as CacULE Scheduler Author;
-* [src_prepare Group](https://src_prepare.gitlab.io) the home of Systems Developers especially Gentoo/Linux.
+* [src_prepare Group](https://src_prepare.gitlab.io), the home of Systems Developers especially Gentoo/Linux.
