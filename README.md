@@ -26,22 +26,19 @@ cp .config_kurisu .config
 
 make -j$(nproc) menuconfig
 
-make -j$(nproc) -l$(nproc)
+make -j$(nproc)
 
 # Install (modules and kernel)
 make -j$(nproc) modules_install
 make -j$(nproc) install
 ```
-> #### Warning!
-> If you want multitasking responsiveness when using multiple jobs, set the load average to prevent slowdowned system ( or maybe even up to OOM ).
-
 > Other options is compiling with [LLVM toolchain](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO ( enabled by default, but needs `LLVM_IAS=1` ).  
 > 
 > Its estimated that it may be longer than the GCC and Binutils, but significally improving performance on specific CPU by using ThinLTO and optimization level 3 ( enabled by default ). This also uses less memory than GCC.
 > ```sh
 > make LLVM=1 LLVM_IAS=1 -j$(nproc) menuconfig
 > 
-> make LLVM=1 LLVM_IAS=1 -j$(nproc) -l$(nproc)
+> make LLVM=1 LLVM_IAS=1 -j$(nproc)
 > 
 > make LLVM=1 LLVM_IAS=1 -j$(nproc) modules_install
 > make LLVM=1 LLVM_IAS=1 -j$(nproc) install
