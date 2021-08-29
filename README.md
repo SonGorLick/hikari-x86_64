@@ -135,6 +135,14 @@ efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --lo
 efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --loader "\vmlinuz-5.13.12-kurisu-x86_64" \
 -u "root=PARTUUID=a157257a-6617-cd4c-b07f-2c33d4cb89f8 rootfstype=f2fs rootflags=gc_merge,compress_algorithm=lz4,compress_extension=*,compress_chksum,atgc rw,noatime loglevel=4"
 ```
+**Show detailed entry**
+```sh
+efibootmgr -v
+```
+**Delete entry**
+```sh
+efibootmgr -BbXXXX
+```
 
 ##  
 ### Acknowledgements
