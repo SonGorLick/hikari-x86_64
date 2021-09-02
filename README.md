@@ -17,10 +17,11 @@
 - Use [LZ4](https://github.com/lz4/lz4) with [z3fold](https://www.kernel.org/doc/html/latest/vm/z3fold.html) zswap compressed block
 - [Xanmod-~~CacULE~~ patchset with Gentoo patches](https://gitlab.com/src_prepare/src_prepare-overlay/-/tree/master/sys-kernel/xanmod-sources)
 
-**What's the picture beside ?** [瀬 紅莉栖](./kernel.sources/drivers/video/logo/logo_linux_clut224.ppm) <kbd>1366x768</kbd>
+**What's the picture beside?** [牧瀬 紅莉栖](./kernel.sources/drivers/video/logo/logo_linux_clut224.ppm) <kbd>1366x768</kbd>
 
 ##  
-**Gentoo/Linux** [ as root, required pkgs: `cpio` `lz4` ]
+**Gentoo/Linux** [ as root, required pkgs: `cpio` `lz4` ]  
+`/usr/src/linux`
 ```sh
 cp .config_kurisu .config
 
