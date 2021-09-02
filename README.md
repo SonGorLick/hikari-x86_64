@@ -9,10 +9,10 @@
 - 500Hz tick rate
 - [EFI Stub supports](https://www.kernel.org/doc/Documentation/efi-stub.txt)
 - [LZ4](https://github.com/lz4/lz4) compressed bzImage
-- BFQ I/O Scheduler as default
-- Governor performance as default
+- [BFQ I/O Scheduler](https://www.kernel.org/doc/html/latest/block/bfq-iosched.html) as default
+- [Governor performance](https://www.kernel.org/doc/Documentation/cpu-freq/governors.txt) as default
 - Disabled NUMA, kexec, debugging, etc.
-- Enabled Paragon's Software NTFS3 driver
+- Enabled [Paragon's Software NTFS3 driver](https://github.com/xanmod/linux-patches/tree/master/linux-5.14.y-xanmod/ntfs3)
 - AMD and Intel SoC only, disabled other SoCs
 - Use [LZ4](https://github.com/lz4/lz4) with [z3fold](https://www.kernel.org/doc/html/latest/vm/z3fold.html) zswap compressed block
 - [Xanmod-~~CacULE~~ patchset with Gentoo patches](https://gitlab.com/src_prepare/src_prepare-overlay/-/tree/master/sys-kernel/xanmod-sources)
