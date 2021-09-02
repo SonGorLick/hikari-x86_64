@@ -1,26 +1,27 @@
-## <p align="center">`_KVER_`</p>
+## <p align="center">`5.13.12-kurisu-x86_64`</p>
 
-<p align="center"><i>~ optimized for multitasking under heavy load (hopefully) ~</i></p>
+<p align="center"><i>~ optimized for multitasking under extreme loads ~</i></p>
 
 ## [Kernel sources](./kernel.sources) <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/kurisu-x86_64?style=flat-square&label=&color=000000&logo=GitHub&logoColor=white&labelColor=373e4d"/>
 <a href="#kernel-sources"><img alt="logo" align="right" width="439px" src="https://i.imgur.com/YSZAzT8.png"/></a>
 
+- [New LRNG](https://github.com/smuellerDD/lrng)
 - 500Hz tick rate
-- EFI Stub supports
-- Lz4 compressed bzImage
+- [EFI Stub supports](https://www.kernel.org/doc/Documentation/efi-stub.txt)
+- [LZ4](https://github.com/lz4/lz4) compressed bzImage
 - BFQ I/O Scheduler as default
 - Governor performance as default
-- Disabled numa, kexec, debugging, etc.
+- Disabled NUMA, kexec, debugging, etc.
+- Enabled Paragon's Software NTFS3 driver
 - AMD and Intel SoC only, disabled other SoCs
-- [Xanmod-~~CacULE~~ patchset + Gentoo patches](https://gitlab.com/src_prepare/src_prepare-overlay/-/tree/master/sys-kernel/xanmod-sources)
-- Enabled lz4 + z3fold zswap compressed block
+- Use [LZ4](https://github.com/lz4/lz4) with [z3fold](https://www.kernel.org/doc/html/latest/vm/z3fold.html) zswap compressed block
+- [Xanmod-~~CacULE~~ patchset with Gentoo patches](https://gitlab.com/src_prepare/src_prepare-overlay/-/tree/master/sys-kernel/xanmod-sources)
 
-**Bonus?** For personal use only!
+**What's the picture beside ?** Idk.
 - [Kurisu Makise『牧瀬 紅莉栖』](./kernel.sources/drivers/video/logo/logo_linux_clut224.ppm) <kbd>1366x768</kbd>
 
 ##  
-**Gentoo/Linux** ( as root, required pkgs: `cpio` `lz4` )  
-`/usr/src/linux`
+**Gentoo/Linux** [ as root, required pkgs: `cpio` `lz4` ]
 ```sh
 cp .config_kurisu .config
 
@@ -28,13 +29,12 @@ make -j$(nproc) menuconfig
 
 make -j$(nproc)
 
-# Install (modules and kernel)
 make -j$(nproc) modules_install
 make -j$(nproc) install
 ```
-> Other options is compiling with [LLVM toolchain](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO ( enabled by default, but needs `LLVM_IAS=1` ).  
+> Another options is building with [LLVM toolchain](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO which enabled by default, but needs LLVM integrated assembler.  
 > 
-> Its estimated that it may be longer than the GCC and Binutils, but significally improving performance on specific CPU by using ThinLTO and optimization level 3 ( enabled by default ). This also uses less memory than GCC.
+> It's estimated may be longer than the GCC and Binutils, but significally improving performance on specific CPU by using ThinLTO and optimization level 3 using [Graysky's patch](https://github.com/graysky2/kernel_compiler_patch) which enabled by default. This also uses less memory than GCC.
 > ```sh
 > make LLVM=1 LLVM_IAS=1 -j$(nproc) menuconfig
 > 
@@ -119,7 +119,7 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 **Dracut**  
 Adjust version of the kernel that you build. Below is an example, run the following commands as root.
 ```sh
-dracut --kver _KVER_ /boot/initramfs-_KVER_.img --force
+dracut --kver 5.13.12-kurisu-x86_64 /boot/initramfs-5.13.12-kurisu-x86_64.img --force
 ```
 
 ##  
@@ -127,12 +127,12 @@ dracut --kver _KVER_ /boot/initramfs-_KVER_.img --force
 You must have separate `/boot` partition with partition type **vfat**, then run one of the two commands below as root.  
 **With initramfs**
 ```sh
-efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --loader "\vmlinuz-_KVER_" \
--u "loglevel=4 initrd=\initramfs-_KVER_.img"
+efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --loader "\vmlinuz-5.13.12-kurisu-x86_64" \
+-u "loglevel=4 initrd=\initramfs-5.13.12-kurisu-x86_64.img"
 ```
 **Without initramfs**
 ```sh
-efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --loader "\vmlinuz-_KVER_" \
+efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --loader "\vmlinuz-5.13.12-kurisu-x86_64" \
 -u "root=PARTUUID=a157257a-6617-cd4c-b07f-2c33d4cb89f8 rootfstype=f2fs rootflags=gc_merge,compress_algorithm=lz4,compress_extension=*,compress_chksum,atgc rw,noatime loglevel=4"
 ```
 **Show detailed entry**
@@ -148,5 +148,7 @@ efibootmgr -BbXXXX
 ### Acknowledgements
 * All Linux Kernel Developers and Contributors;
 * [Alexandre Frade](https://github.com/xanmod) as Linux-Xanmod Maintainer;
+  * https://xanmod.org
 * [Hamad Al Marri](https://github.com/hamadmarri) as CacULE Scheduler Author;
+  * https://github.com/hamadmarri/cacule-cpu-scheduler
 * [src_prepare Group](https://src_prepare.gitlab.io), the home of Systems Developers especially Gentoo/Linux.
