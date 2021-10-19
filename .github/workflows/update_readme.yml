@@ -37,11 +37,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          commit_message: '`:hibiscus: AMADEUS` 🡲 Sync README.md'
+          commit_message: '🡲 Sync README.md'
           branch: 'kurisu-x86_64'
           commit_user_name: '牧瀬 紅莉栖'
-          commit_user_email: 'findarr@pm.me'
-          commit_author: '牧瀬 紅莉栖  <findarr@pm.me>'
+          commit_user_email: 'alternate-se7en@pm.me'
+          commit_author: '牧瀬 紅莉栖  <alternate-se7en@pm.me>'
           add_options: '-u'
           skip_dirty_check: true
           disable_globbing: true
