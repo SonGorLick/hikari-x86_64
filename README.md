@@ -25,7 +25,7 @@
 ```sh
 cp .config_kurisu .config
 
-make -j$(nproc) menuconfig
+make -j$(nproc) menuconfig # or `nconfig`
 
 make -j$(nproc)
 
@@ -36,7 +36,7 @@ make -j$(nproc) install
 > 
 > It's estimated may be longer than the GCC and Binutils, but significally improving performance on specific CPU by using ThinLTO and optimization level 3 using [Graysky's patch](https://github.com/graysky2/kernel_compiler_patch) which enabled by default. This also uses less memory than GCC.
 > ```sh
-> make LLVM=1 LLVM_IAS=1 -j$(nproc) menuconfig
+> make LLVM=1 LLVM_IAS=1 -j$(nproc) menuconfig # or `nconfig`
 > 
 > make LLVM=1 LLVM_IAS=1 -j$(nproc)
 > 
