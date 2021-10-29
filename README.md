@@ -3,7 +3,7 @@
 <p align="center"><i>~ optimized for multitasking under extreme loads ~</i></p>
 
 ## [Kernel sources](./kernel.sources) <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/kurisu-x86_64?style=flat-square&label=&color=000000&logo=GitHub&logoColor=white&labelColor=373e4d"/>
-<a href="#kernel-sources"><img alt="logo" align="right" width="439px" src="https://i.imgur.com/YSZAzT8.png"/></a>
+<a href="#kernel-sources"><img alt="logo" align="right" width="400px" src="https://i.imgur.com/YSZAzT8.png"/></a>
 
 - [New LRNG](https://github.com/smuellerDD/lrng)
 - 500Hz tick rate
