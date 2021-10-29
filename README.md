@@ -20,8 +20,6 @@
 **What's the picture beside?** [牧瀬 紅莉栖](./kernel.sources/drivers/video/logo/logo_linux_clut224.ppm) <kbd>1366x768</kbd>
 
 ##  
-**Gentoo/Linux** [ as root, required pkgs: `cpio` `lz4` ]  
-`/usr/src/linux`
 ```sh
 cp .config_kurisu .config
 
@@ -32,9 +30,11 @@ make -j$(nproc)
 make -j$(nproc) modules_install
 make -j$(nproc) install
 ```
-> Another options is building with [LLVM toolchain](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO which enabled by default, but needs LLVM integrated assembler.  
+> Good options is build with [LLVM](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO which enabled by default, needs LLVM integrated assembler.  
 > 
-> It's estimated may be longer than the GCC and Binutils, but significally improving performance on specific CPU by using ThinLTO and optimization level 3 using [Graysky's patch](https://github.com/graysky2/kernel_compiler_patch) which enabled by default. This also uses less memory than GCC.
+> It's estimated may be longer than the GCC and Binutils, but significally improving performance on specific CPU by using ThinLTO and optimization level 3 using [Graysky's patch](https://github.com/graysky2/kernel_compiler_patch) which enabled by default.
+> > This also uses less memory than GCC.
+> 
 > ```sh
 > make LLVM=1 LLVM_IAS=1 -j$(nproc) menuconfig # or `nconfig`
 > 
@@ -62,21 +62,22 @@ make -j$(nproc) install
 > ```sh
 > cat > /sbin/localh3art-init << "EOF"
 > #!/bin/sh
-> LC_ALL=C LANG=C; W="\033[1;37m" R="\033[1;31m" G="\033[1;32m" NC="\033[0m"
+> LC_ALL=POSIX LANG=POSIX; W='\033[1;37m' R='\033[1;31m' G='\033[1;32m' NC='\033[0m'
 > 
-> INIT="/sbin/openrc sysinit"
+> INIT='/sbin/openrc sysinit'
 > 
 > kern() { printf " ${G}* ${W}Booting with ${R}$(uname -r) "; }
 > dots() {
->     for X in $(seq 1 4); do
->         if [ "$X" -gt 1 ]; then
+>     for S in $(seq 1 4); do
+>         if [ "$S" -gt 1 ]; then
 >             printf "${W}.${NC}"
 >         fi
 >         sleep .1s
->     done && unset X
+>     done
 > }
 > 
-> kern; dots; clear; exec ${INIT}; exit $?
+> kern; dots; clear; exec ${INIT}
+> 
 > EOF
 > ```
 > ```sh
@@ -95,7 +96,7 @@ make -j$(nproc) install
 
 ##  
 ### How to convert my own framebuffer logo?
-Simply install `netpbm`, then convert your own logo for example is **.png** extension into 224 24-bit colors ASCII pixmap.
+Simply install `netpbm` then convert your logo, for example is **.png** file into 224 24-bit colors ASCII pixmap.
 
 > Generally, the Linux kernel framebuffer logo size is **80**x**80** pixels, but if you want to adjust the full screen size, you have to set up your logo with a size that matches your screen resolution e.g **1366**x**768**.
 
@@ -124,7 +125,7 @@ dracut --kver 5.14.11-kurisu-x86_64 /boot/initramfs-5.14.11-kurisu-x86_64.img --
 
 ##  
 ### EFI Stub Examples
-You must have separate `/boot` partition with partition type **vfat**, then run one of the two commands below as root.  
+You must have separate `/boot` partition with type **vfat**, then run one of the two commands below as root.  
 **With initramfs**
 ```sh
 efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --loader "\vmlinuz-5.14.11-kurisu-x86_64" \
