@@ -3,7 +3,7 @@
 <p align="center"><i>~ optimized for multitasking under extreme loads ~</i></p>
 
 ## [Kernel sources](./kernel.sources) <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/kurisu-x86_64?style=flat-square&label=&color=000000&logo=GitHub&logoColor=white&labelColor=373e4d"/>
-<a href="#kernel-sources"><img alt="logo" align="right" width="400px" src="https://i.imgur.com/YSZAzT8.png"/></a>
+<a href="#kernel-sources-"><img alt="logo" align="right" width="402px" src="https://i.imgur.com/YSZAzT8.png"/></a>
 
 - [New LRNG](https://github.com/smuellerDD/lrng)
 - 500Hz tick rate
@@ -12,14 +12,14 @@
 - [BFQ I/O Scheduler](https://www.kernel.org/doc/html/latest/block/bfq-iosched.html) as default
 - [Governor performance](https://www.kernel.org/doc/Documentation/cpu-freq/governors.txt) as default
 - Disabled NUMA, kexec, debugging, etc.
-- Enabled [Paragon's Software NTFS3 driver](https://github.com/xanmod/linux-patches/tree/master/linux-5.14.y-xanmod/ntfs3)
-- AMD and Intel SoC only, disabled other SoCs
+- AMD and Intel SoC, disabled other SoCs
 - Use [LZ4](https://github.com/lz4/lz4) with [z3fold](https://www.kernel.org/doc/html/latest/vm/z3fold.html) zswap compressed block
 - [Xanmod-~~CacULE~~ patchset with Gentoo patches](https://gitlab.com/src_prepare/src_prepare-overlay/-/tree/master/sys-kernel/xanmod-sources)
 
 **What's the picture beside?** [牧瀬 紅莉栖](./kernel.sources/drivers/video/logo/logo_linux_clut224.ppm) <kbd>1366x768</kbd>
 
 ##  
+**Required packages:** `cpio` `lz4`
 ```sh
 cp .config_kurisu .config
 
@@ -33,7 +33,7 @@ make -j$(nproc) install
 > Good options is build with [LLVM](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO which enabled by default, needs LLVM integrated assembler.  
 > 
 > It's estimated may be longer than the GCC and Binutils, but significally improving performance on specific CPU by using ThinLTO and optimization level 3 using [Graysky's patch](https://github.com/graysky2/kernel_compiler_patch) which enabled by default.
-> > This also uses less memory than GCC.
+> > This also use less memory than GCC when compiling.
 > 
 > ```sh
 > make LLVM=1 LLVM_IAS=1 -j$(nproc) menuconfig # or `nconfig`
@@ -77,7 +77,6 @@ make -j$(nproc) install
 > }
 > 
 > kern; dots; clear; exec ${INIT}
-> 
 > EOF
 > ```
 > ```sh
@@ -96,7 +95,7 @@ make -j$(nproc) install
 
 ##  
 ### How to convert my own framebuffer logo?
-Simply install `netpbm` then convert your logo, for example is **.png** file into 224 24-bit colors ASCII pixmap.
+Simply install `netpbm` then convert your own logo, for example is **.png** file into 224 24-bit colors ASCII pixmap.
 
 > Generally, the Linux kernel framebuffer logo size is **80**x**80** pixels, but if you want to adjust the full screen size, you have to set up your logo with a size that matches your screen resolution e.g **1366**x**768**.
 
@@ -125,7 +124,7 @@ dracut --kver 5.14.11-kurisu-x86_64 /boot/initramfs-5.14.11-kurisu-x86_64.img --
 
 ##  
 ### EFI Stub Examples
-You must have separate `/boot` partition with type **vfat**, then run one of the two commands below as root.  
+You must have separate `/boot` **vfat** (12/16/32) partition, then run one of the two commands below as root.  
 **With initramfs**
 ```sh
 efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --loader "\vmlinuz-5.14.11-kurisu-x86_64" \
