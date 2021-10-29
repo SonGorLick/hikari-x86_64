@@ -2,8 +2,8 @@
 
 <p align="center"><i>~ optimized for multitasking under extreme loads ~</i></p>
 
-## [Kernel sources](./kernel.sources) <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/kurisu-x86_64?style=flat-square&label=&color=000000&logo=GitHub&logoColor=white&labelColor=373e4d"/>
-<a href="#kernel-sources-"><img alt="logo" align="right" width="402px" src="https://i.imgur.com/YSZAzT8.png"/></a>
+## [kernel.sources](./kernel.sources) <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/kurisu-x86_64?style=flat-square&label=&color=000000&logo=GitHub&logoColor=white&labelColor=373e4d"/>
+<a href="#kernelsources-"><img alt="logo" align="right" width="402px" src="https://i.imgur.com/YSZAzT8.png"/></a>
 
 - [New LRNG](https://github.com/smuellerDD/lrng)
 - 500Hz tick rate
@@ -19,7 +19,7 @@
 **What's the picture beside?** [牧瀬 紅莉栖](./kernel.sources/drivers/video/logo/logo_linux_clut224.ppm) <kbd>1366x768</kbd>
 
 ##  
-**Required packages:** `cpio` `lz4`
+> **General Linux kernel compilation**
 ```sh
 cp .config_kurisu .config
 
@@ -33,7 +33,6 @@ make -j$(nproc) install
 > Good options is build with [LLVM](https://www.kernel.org/doc/html/latest/kbuild/llvm.html) with ThinLTO which enabled by default, needs LLVM integrated assembler.  
 > 
 > It's estimated may be longer than the GCC and Binutils, but significally improving performance on specific CPU by using ThinLTO and optimization level 3 using [Graysky's patch](https://github.com/graysky2/kernel_compiler_patch) which enabled by default.
-> > This also use less memory than GCC when compiling.
 > 
 > ```sh
 > make LLVM=1 LLVM_IAS=1 -j$(nproc) menuconfig # or `nconfig`
@@ -45,9 +44,6 @@ make -j$(nproc) install
 > ```
 >   
 > ![ThinLTO](https://raw.githubusercontent.com/owl4ce/kurisu-x86_64/kurisu-x86_64/.github/screenshots/2021-06-29-062643_1301x748_scrot.png)
-
-> Recommended to build with native CPU optimization, auto detected by GCC or Clang.   
->   
 > ![-MARCH](https://raw.githubusercontent.com/owl4ce/kurisu-x86_64/kurisu-x86_64/.github/screenshots/2021-06-29-061857_1301x748_scrot.png)
 
 ##  
@@ -91,7 +87,7 @@ make -j$(nproc) install
 > CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER=y
 > ```
 > **: ᴘᴀᴛʜ**  
-> **:** `Device Drivers` -> `Graphics support` -> `Console display driver support`
+> **:** `Device Drivers` 🡲 `Graphics support` 🡲 `Console display driver support`
 
 ##  
 ### How to convert my own framebuffer logo?
@@ -106,7 +102,7 @@ pngtopnm /path/to/your_logo.png | ppmquant -fs 223 | pnmtoplainpnm > logo_linux_
 doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_clut224.ppm
 ```
 
-> In order for the logo to appear on boot, make sure to use `loglevel=4` in the [kernel parameters](https://wiki.archlinux.org/index.php/Kernel_parameters).
+> In order for the logo to appear on boot, ensure to use `loglevel=4` in the [kernel parameters](https://wiki.archlinux.org/index.php/Kernel_parameters).
 
 <p align="center"><img src="https://i.imgur.com/R82KVaB.gif"/></p>
 
@@ -124,7 +120,8 @@ dracut --kver 5.14.11-kurisu-x86_64 /boot/initramfs-5.14.11-kurisu-x86_64.img --
 
 ##  
 ### EFI Stub Examples
-You must have separate `/boot` **vfat** (12/16/32) partition, then run one of the two commands below as root.  
+You must have separate `/boot` type **vfat** (12/16/32) partition, then run one of the two commands below as root.  
+
 **With initramfs**
 ```sh
 efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO_kurisu-x86_64" --loader "\vmlinuz-5.14.11-kurisu-x86_64" \
