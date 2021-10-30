@@ -1,14 +1,12 @@
-## <p align="center">`5.14.11-hikari-x86_64`</p>
+# <p align="center">`5.14.11-hikari-x86_64`</p>
 
 <p align="center"><samp>✲ optimized for multitask under extreme loads ✲</samp></p>
 
 ## [linux](./linux) <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/hikari-x86_64?style=flat-square&label=&color=000000&logo=GitHub&logoColor=white&labelColor=373e4d"/>
 
-<!--
-<p align="center"><a href="#general-linux-kernel-compilation-with-gcc-toolchain"><img alt="" src="https://repository-images.githubusercontent.com/308812995/eb925eab-3829-4063-9b5f-2d018e792df4"/></a></p>
--->
+<p align="center"><a href="#general-linux-kernel-compilation-with-gcc-toolchain"><img alt="" src="https://repository-images.githubusercontent.com/308812995/e978591c-11ed-452f-bab8-718c2fca29cf"/></a></p>
 
-<details open>
+<details>
 <summary>Featured configuration</summary>
   
   <br>
@@ -88,8 +86,6 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 ```
 
 > To make framebuffer logo to appear on boot, ensure to use `loglevel=4` in the [kernel parameters](https://wiki.archlinux.org/index.php/Kernel_parameters).
-
-<p align="center">https://user-images.githubusercontent.com/53987136/139524393-a354d1b6-beda-404f-bb4e-607e435dc660.mp4</p>
 
 > #### Note
 > If you're using custom framebuffer logo like mine.  
