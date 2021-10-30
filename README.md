@@ -3,7 +3,7 @@
 <p align="center"><i>~ optimized for multitasking under extreme loads ~</i></p>
 
 ## [kernel.sources](./kernel.sources) <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/kurisu-x86_64?style=flat-square&label=&color=000000&logo=GitHub&logoColor=white&labelColor=373e4d"/>
-<a href="#kernelsources-"><img alt="logo" align="right" width="402px" src="https://i.imgur.com/YSZAzT8.png"/></a>
+<a href="#kernelsources-"><img alt="" align="right" width="402px" src="https://i.imgur.com/YSZAzT8.png"/></a>
 
 - [New LRNG](https://github.com/smuellerDD/lrng)
 - 500Hz tick rate
@@ -42,9 +42,10 @@ make -j$(nproc) install
 > make LLVM=1 LLVM_IAS=1 -j$(nproc) modules_install
 > make LLVM=1 LLVM_IAS=1 -j$(nproc) install
 > ```
->   
-> ![ThinLTO](https://raw.githubusercontent.com/owl4ce/kurisu-x86_64/kurisu-x86_64/.github/screenshots/2021-06-29-062643_1301x748_scrot.png)
-> ![-MARCH](https://raw.githubusercontent.com/owl4ce/kurisu-x86_64/kurisu-x86_64/.github/screenshots/2021-06-29-061857_1301x748_scrot.png)
+> 
+> <p align="center"><img src="./.github/screenshots/2021-10-30-072210_1301x748_scrot.png" alt="O3"/></p>
+> <p align="center"><img src="./.github/screenshots/2021-10-30-073344_1301x748_scrot.png" alt="thin.lto"/></p>
+> <p align="center"><img src="./.github/screenshots/2021-10-30-072151_1301x748_scrot.png" alt="march"/></p>
 
 ##  
 
@@ -104,7 +105,7 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 
 > In order for the logo to appear on boot, ensure to use `loglevel=4` in the [kernel parameters](https://wiki.archlinux.org/index.php/Kernel_parameters).
 
-<p align="center"><img src="https://i.imgur.com/R82KVaB.gif"/></p>
+<p align="center"><img alt="" src="https://i.imgur.com/R82KVaB.gif"/></p>
 
 > If you want silent boot, simply use `quiet` instead.
 
