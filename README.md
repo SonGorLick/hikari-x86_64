@@ -1,4 +1,4 @@
-# <p align="center">`5.14.11-hikari-x86_64`</p>
+# <p align="center">`5.15.1-hikari-x86_64`</p>
 
 <p align="center"><samp>✲ optimized for multitask under extreme loads ✲</samp></p>
 
@@ -131,7 +131,7 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 > #### Dracut
 > Adjust version of the kernel that you build. Below is an example, run the following commands as root.
 ```sh
-dracut --kver 5.14.11-hikari-x86_64 /boot/initramfs-5.14.11-hikari-x86_64.img --force
+dracut --kver 5.15.1-hikari-x86_64 /boot/initramfs-5.15.1-hikari-x86_64.img --force
 ```
 
 ##  
@@ -140,12 +140,12 @@ dracut --kver 5.14.11-hikari-x86_64 /boot/initramfs-5.14.11-hikari-x86_64.img --
 
 > #### With initramfs
 ```sh
-efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO.hikari-x86_64" --loader "\vmlinuz-5.14.11-hikari-x86_64" \
--u "loglevel=4 initrd=\initramfs-5.14.11-hikari-x86_64.img"
+efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO.hikari-x86_64" --loader "\vmlinuz-5.15.1-hikari-x86_64" \
+-u "loglevel=4 initrd=\initramfs-5.15.1-hikari-x86_64.img"
 ```
 > #### Without initramfs
 ```sh
-efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO.hikari-x86_64" --loader "\vmlinuz-5.14.11-hikari-x86_64" \
+efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO.hikari-x86_64" --loader "\vmlinuz-5.15.1-hikari-x86_64" \
 -u "root=PARTUUID=a157257a-6617-cd4c-b07f-2c33d4cb89f8 rootfstype=f2fs rootflags=gc_merge,compress_algorithm=lz4,compress_extension=*,compress_chksum,compress_cache,atgc rw,noatime loglevel=4"
 ```
 > #### Show detailed entry
