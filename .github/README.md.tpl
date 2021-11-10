@@ -133,6 +133,7 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 ```sh
 dracut --kver _KVER_ /boot/initramfs-_KVER_.img --force
 ```
+See also my [dracut.conf](https://github.com/owl4ce/hmg/blob/main/etc/dracut.conf). Read more at [Gentoo Wiki](https://wiki.gentoo.org/wiki/Dracut).
 
 ##  
 ### EFI Stub Examples
@@ -146,7 +147,7 @@ efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO.hikari-x86_64" --lo
 > #### Without initramfs
 ```sh
 efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO.hikari-x86_64" --loader "\vmlinuz-_KVER_" \
--u "root=PARTUUID=a157257a-6617-cd4c-b07f-2c33d4cb89f8 rootfstype=f2fs rootflags=gc_merge,compress_algorithm=lz4,compress_extension=*,compress_chksum,compress_cache,atgc rw,noatime loglevel=4"
+-u "root=PARTUUID=13992175-d060-1948-b042-ade29f8af571 rootfstype=f2fs rootflags=gc_merge,checkpoint_merge,compress_algorithm=lz4,compress_extension=*,compress_chksum,compress_cache,atgc rw,noatime loglevel=4"
 ```
 > #### Show detailed entry
 ```sh
