@@ -18,13 +18,14 @@
   > * Use [Clang/LLVM toolchain](https://kernel.org/doc/html/latest/kbuild/llvm.html) with O3 optimization for processor family x86-64-v3 and ThinLTO by default
   > * Use [LZ4](https://github.com/lz4/lz4) compressed bzImage by default for fastest de/compression speed with low compression ratio
   > * Use [BFQ I/O Scheduler](https://kernel.org/doc/html/latest/block/bfq-iosched.html) which guarantees high system, application responsiveness, and low-latency
-  > * Use [Performance Governor](https://kernel.org/doc/Documentation/cpu-freq/governors.txt) by default for max CPU speed, change if too high energy consumptions
+  > * Use [Performance Governor](https://kernel.org/doc/html/latest/admin-guide/pm/cpufreq.html) by default for max CPU speed, change if too high energy consumptions
   > * Use [LZ4](https://github.com/lz4/lz4) with [z3fold](https://kernel.org/doc/html/latest/vm/z3fold.html) zswap compressed block by default which balanced between ratio and speed
   > * Disabled unused features like 5-level page tables, debugging, kexec, kprobes, NUMA, Xen, etc.
   > * Enabled F2FS (SSD) and EXT4 (HDD) as built-in which optimized, and BTRFS as module
   > * Enabled AMD-specific or Intel-specific features, other SoCs are all disabled
-  > * Enabled New Paragon's Software NTFS3 driver
-  > * Full-support [EFI stub](https://kernel.org/doc/Documentation/efi-stub.txt) w/o initramfs
+  > * Enabled [AMD-pstate](https://lwn.net/Articles/870604) driver for schedutil and ondemand governor
+  > * Enabled New Paragon's Software [NTFS3](https://kernel.org/doc/html/latest/filesystems/ntfs3.html) driver
+  > * Full-support [EFI stub](https://kernel.org/doc/html/latest/admin-guide/efi-stub.html) w/o initramfs
   > * Many more.
 
 </details>
@@ -133,7 +134,7 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 ```sh
 dracut --kver 5.15.1-hikari-x86_64 /boot/initramfs-5.15.1-hikari-x86_64.img --force
 ```
-See also my [dracut.conf](https://github.com/owl4ce/hmg/blob/main/etc/dracut.conf). Read more at [Gentoo Wiki](https://wiki.gentoo.org/wiki/Dracut).
+> See also my [dracut.conf](https://github.com/owl4ce/hmg/blob/main/etc/dracut.conf). Read more at [Gentoo Wiki](https://wiki.gentoo.org/wiki/Dracut).
 
 ##  
 ### EFI Stub Examples
