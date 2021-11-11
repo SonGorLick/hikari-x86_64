@@ -23,7 +23,7 @@
   > * Disabled unused features like 5-level page tables, debugging, kexec, kprobes, NUMA, Xen, etc.
   > * Enabled F2FS (SSD) and EXT4 (HDD) as built-in which optimized, and BTRFS as module
   > * Enabled AMD-specific or Intel-specific features, other SoCs are all disabled
-  > * Enabled [AMD-pstate](https://lwn.net/Articles/870604) driver for schedutil and ondemand governor
+  > * Enabled [AMD-pstate](https://lore.kernel.org/lkml/20211029130241.1984459-1-ray.huang@amd.com/T) driver for schedutil and ondemand governor
   > * Enabled New Paragon's Software [NTFS3](https://kernel.org/doc/html/latest/filesystems/ntfs3.html) driver
   > * Full-support [EFI stub](https://kernel.org/doc/html/latest/admin-guide/efi-stub.html) w/o initramfs
   > * Many more.
@@ -148,7 +148,7 @@ efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO.hikari-x86_64" --lo
 > #### Without initramfs
 ```sh
 efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO.hikari-x86_64" --loader "\vmlinuz-5.15.1-hikari-x86_64" \
--u "root=PARTUUID=13992175-d060-1948-b042-ade29f8af571 rootfstype=f2fs rootflags=gc_merge,checkpoint_merge,compress_algorithm=lz4,compress_extension=*,compress_chksum,compress_cache,atgc rw,noatime loglevel=4"
+-u "root=PARTUUID=13992175-d060-1948-b042-ade29f8af571 rootfstype=f2fs rootflags=gc_merge,checkpoint_merge,compress_algorithm=lz4,compress_extension=*,compress_chksum,compress_cache,atgc loglevel=4"
 ```
 > #### Show detailed entry
 ```sh
