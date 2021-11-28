@@ -39,8 +39,8 @@ cp -v .config_hikari .config
 # Many people usually use `menuconfig`, use `nconfig` to use beautiful curses interface.
 make -j$(nproc) nconfig 
 
-# Build Linux with niceness -1 as root.
-nice -n -1 make -j$(nproc)
+# Build Linux with I/O niceness.
+ionice -c2 -n0 make -j$(nproc)
 
 # Install the kernel modules.
 make -j$(nproc) modules_install
@@ -56,8 +56,8 @@ cp -v .config_hikari .config
 # Many people usually use `menuconfig`, use `nconfig` to use beautiful curses interface.
 make -j$(nproc) LLVM=1 LLVM_IAS=1 nconfig
 
-# Build Linux with niceness -1 as root.
-nice -n -1 make -j$(nproc) LLVM=1 LLVM_IAS=1
+# Build Linux with I/O niceness.
+ionice -c2 -n0 make -j$(nproc) LLVM=1 LLVM_IAS=1
 
 # Install the kernel modules.
 make -j$(nproc) LLVM=1 LLVM_IAS=1 modules_install
