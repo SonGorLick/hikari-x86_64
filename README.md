@@ -1,4 +1,4 @@
-# <p align="center">`5.15.4-hikari-x86_64`</p>
+# <p align="center">`5.15.6-hikari-x86_64`</p>
 
 <p align="center"><samp>✲ optimized for multitask under extreme loads, see <a href="https://github.com/igo95862/cfs-zen-tweaks">cfs-zen-tweaks</a>(<a href="https://github.com/owl4ce/cfs-zen-tweaks-openrc">-openrc</a>) ✲</samp></p>
 
@@ -12,16 +12,16 @@
   <br>
   
   > * Use [LRNG](https://github.com/smuellerDD/lrng) framework to provide sufficient entropy during boot as well as in virtual environments and SSDs
-  > * Use [LZ4](https://github.com/lz4/lz4) compression algorithm by default for fastest de/compression speeds with low-compression ratio
   > * Use balanced 500Hz timer frequency for fast desktop interactivity and smoothness with energy-efficient
   > * Use [Clang/LLVM toolchain](https://kernel.org/doc/html/latest/kbuild/llvm.html) with O3 optimization for processor family x86-64-v3 and ThinLTO by default
-  > * Use [BFQ I/O Scheduler](https://kernel.org/doc/html/latest/block/bfq-iosched.html) which guarantees high-system, applications responsiveness, and low-latency
-  > * Use [Performance Governor](https://kernel.org/doc/html/latest/admin-guide/pm/cpufreq.html) by default for max CPU speed, change if too high energy consumptions
-  > * Use [LZ4](https://github.com/lz4/lz4) with [z3fold](https://kernel.org/doc/html/latest/vm/z3fold.html) zswap compressed block by default which balanced between ratio and speed
+  > * Majority use [LZ4](https://github.com/lz4/lz4) compression algorithm for fastest de/compression speeds with low-compression ratio
+  > * Use [BFQ I/O scheduler](https://kernel.org/doc/html/latest/block/bfq-iosched.html) which guarantees high-system, applications responsiveness, and low-latency
+  > * Use [Performance governor](https://kernel.org/doc/html/latest/admin-guide/pm/cpufreq.html) by default for max CPU speed, change if too high energy consumptions
   > * Disabled unused features like 5-level page tables, debugging, kexec, kprobes, NUMA, Xen, etc.
   > * Enabled F2FS (SSD) and EXT4 (HDD) as built-in which optimized, and BTRFS as module
   > * Enabled AMD-specific or Intel-specific features, other SoCs are all disabled
   > * Enabled [AMD-pstate](https://lore.kernel.org/lkml/20211029130241.1984459-1-ray.huang@amd.com/T) driver for schedutil and ondemand governor
+  > * Enabled [Zstd](https://github.com/facebook/zstd) module compression support by default (KMOD)
   > * Enabled Google's BBRv2 TCP congestion control by default
   > * Enabled New Paragon's Software [NTFS3](https://kernel.org/doc/html/latest/filesystems/ntfs3.html) driver
   > * Full-support [EFI stub](https://kernel.org/doc/html/latest/admin-guide/efi-stub.html) w/o initramfs
@@ -133,7 +133,7 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 > #### Dracut
 > Adjust version of the kernel that you build. Below is an example, run the following commands as root.
 ```sh
-dracut --kver 5.15.4-hikari-x86_64 /boot/initramfs-5.15.4-hikari-x86_64.img --force
+dracut --kver 5.15.6-hikari-x86_64 /boot/initramfs-5.15.6-hikari-x86_64.img --force
 ```
 > See also my [dracut.conf](https://github.com/owl4ce/hmg/blob/main/etc/dracut.conf). Read more at [Gentoo Wiki](https://wiki.gentoo.org/wiki/Dracut).
 
@@ -143,12 +143,12 @@ dracut --kver 5.15.4-hikari-x86_64 /boot/initramfs-5.15.4-hikari-x86_64.img --fo
 
 > #### With initramfs
 ```sh
-efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO.hikari-x86_64" --loader "\vmlinuz-5.15.4-hikari-x86_64" \
--u "loglevel=4 initrd=\initramfs-5.15.4-hikari-x86_64.img"
+efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO.hikari-x86_64" --loader "\vmlinuz-5.15.6-hikari-x86_64" \
+-u "loglevel=4 initrd=\initramfs-5.15.6-hikari-x86_64.img"
 ```
 > #### Without initramfs
 ```sh
-efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO.hikari-x86_64" --loader "\vmlinuz-5.15.4-hikari-x86_64" \
+efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO.hikari-x86_64" --loader "\vmlinuz-5.15.6-hikari-x86_64" \
 -u "root=PARTUUID=13992175-d060-1948-b042-ade29f8af571 rootfstype=f2fs rootflags=gc_merge,checkpoint_merge,compress_algorithm=lz4,compress_extension=*,compress_chksum,compress_cache,atgc loglevel=4"
 ```
 > #### Show detailed entry
