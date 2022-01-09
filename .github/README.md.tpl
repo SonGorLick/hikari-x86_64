@@ -96,30 +96,31 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 > **Below is an example of my trick ..**  
 > Run the following commands as root.
 > ```sh
-> cat > /sbin/localh3art-init << "EOF"
+> install -m755 /dev/stdin /sbin/localh3art-init << "EOF"
 > #!/bin/sh
-> LC_ALL=POSIX LANG=POSIX; W='\033[1;37m' R='\033[1;31m' G='\033[1;32m' NC='\033[0m'
 > 
-> INIT='/sbin/openrc sysinit'
+> LC_ALL=POSIX LANG=POSIX
 > 
-> kern() { printf " ${G}* ${W}Booting with ${R}$(uname -r) "; }
-> dots() {
->     for S in $(seq 1 4); do
->         if [ "$S" -gt 1 ]; then
->             printf "${W}.${NC}"
->         fi
->         sleep .1s
->     done
-> }
+> W='\033[1;37m' R='\033[1;31m' G='\033[1;32m' X='\033[0m'
 > 
-> kern; dots; clear; exec ${INIT}
+> SYSINIT='/sbin/openrc sysinit'
+> 
+> printf " ${G}* ${W}Booting with ${R}$(uname -r) "
+> 
+> for S in $(seq 1 4); do
+>     if [ "$S" -gt 1 ]; then
+>         printf "${W}.${X}"
+>     fi
+>     sleep .1s
+> done
+> 
+> clear
+> 
+> exec ${SYSINIT}
 > EOF
 > ```
 > ```sh
-> chmod +x /sbin/localh3art-init
-> ```
-> ```sh
-> sed -i 's|si::sysinit:/sbin/openrc sysinit|si::sysinit:/sbin/localh3art-init|' /etc/inittab
+> sed -i '/si::sysinit:/s|openrc sysinit|localh3art-init|' /etc/inittab
 
 > **Or, if you're actually don't care about framebuffer logo ..**  
 > Simply enable this to disable the framebuffer logo that appears on boot.
