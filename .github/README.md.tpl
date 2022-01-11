@@ -38,16 +38,16 @@
 cp -v .config_hikari .config
 
 # Many people usually use `menuconfig`, use `nconfig` to use beautiful curses interface.
-make -j$(nproc) nconfig 
+ionice -c2 -n0 make -j$(nproc) nconfig
 
-# Build Linux with I/O niceness.
+# Build Linux kernel.
 ionice -c2 -n0 make -j$(nproc)
 
 # Install the kernel modules.
-make -j$(nproc) modules_install
+ionice -c2 -n0 make -j$(nproc) modules_install
 
 # Install the bzImage, known as vmlinuz.
-make -j$(nproc) install
+ionice -c2 -n0 make -j$(nproc) install
 ```
 > #### General Linux kernel compilation with LLVM toolchain
 ```sh
@@ -55,19 +55,19 @@ make -j$(nproc) install
 cp -v .config_hikari .config
 
 # Many people usually use `menuconfig`, use `nconfig` to use beautiful curses interface.
-make -j$(nproc) LLVM=1 LLVM_IAS=1 nconfig
+ionice -c2 -n0 make -j$(nproc) LLVM=1 LLVM_IAS=1 nconfig
 
-# Build Linux with I/O niceness.
+# Build Linux kernel.
 ionice -c2 -n0 make -j$(nproc) LLVM=1 LLVM_IAS=1
 
 # Install the kernel modules.
-make -j$(nproc) LLVM=1 LLVM_IAS=1 modules_install
+ionice -c2 -n0 make -j$(nproc) LLVM=1 LLVM_IAS=1 modules_install
 
 # Install the bzImage, known as vmlinuz.
-make -j$(nproc) LLVM=1 LLVM_IAS=1 install
+ionice -c2 -n0 make -j$(nproc) LLVM=1 LLVM_IAS=1 install
 ```
-> ㅤ  
 > Estimated may be longer than the GCC toolchain, but significally improving performance by using ThinLTO.
+
 > <p align="center"><img src="./.github/screenshots/2021-10-30-072210_1301x748_scrot.png" alt="O3"/></p>
 > <p align="center"><img src="./.github/screenshots/2021-10-30-073344_1301x748_scrot.png" alt="thin.lto"/></p>
 > <p align="center"><img src="./.github/screenshots/2021-10-30-072151_1301x748_scrot.png" alt="march"/></p>
