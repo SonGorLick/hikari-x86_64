@@ -99,18 +99,19 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 > install -m755 /dev/stdin /sbin/localh3art-init << "EOF"
 > #!/bin/sh
 > 
-> LC_ALL=POSIX LANG=POSIX
+> LANG='POSIX' SYSINIT='/sbin/openrc sysinit' \
+> X='\033[0m' W='\033[1;37m' R='\033[1;31m' G='\033[1;32m'
 > 
-> W='\033[1;37m' R='\033[1;31m' G='\033[1;32m' X='\033[0m'
+> read -r KVER </proc/version
 > 
-> SYSINIT='/sbin/openrc sysinit'
+> KVER="${KVER%%\ (*}" \
+> KVER="${KVER##*version\ }"
 > 
-> printf " ${G}* ${W}Booting with ${R}$(uname -r) "
+> printf ' %b ' "${G}* ${W}Booting with ${R}${KVER:-$(uname -r)}"
 > 
-> for S in $(seq 1 4); do
->     if [ "$S" -gt 1 ]; then
->         printf "${W}.${X}"
->     fi
+> for S in 1 2 3 4; do
+>     [ "$S" -gt 1 ] || continue
+>     printf '%b' "${W}.${X}"
 >     sleep .1s
 > done
 > 
@@ -120,7 +121,7 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 > EOF
 > ```
 > ```sh
-> sed -i '/si::sysinit:/s|openrc sysinit|localh3art-init|' /etc/inittab
+> sed -e '/si::sysinit:/s|openrc sysinit|localh3art-init|' -i /etc/inittab
 
 > **Or, if you're actually don't care about framebuffer logo ..**  
 > Simply enable this to disable the framebuffer logo that appears on boot.
@@ -166,5 +167,5 @@ efibootmgr -BbXXXX
 > * All Linux kernel developers and contributors
 > * [Alexandre Frade](https://github.com/xanmod) as [Linux-Xanmod](https://xanmod.org) maintainer
 > * [Hamad Al Marri](https://github.com/hamadmarri) as [CacULE (and other) scheduler](https://github.com/hamadmarri/cacule-cpu-scheduler) author
-> * [Peter Jung](https://github.com/ptr1337) as [CachyOS](https://cachyos.org) developer, an optimized Arch-based Linux distribution
-> * [src_prepare Group](https://src_prepare.gitlab.io), the home of systems developers especially for Gentoo/Linux
+> * [Peter Jung](https://github.com/ptr1337) as [CachyOS](https://cachyos.org) developer, optimized Arch-based Linux distribution
+> * [src_prepare Group](https://src_prepare.gitlab.io), the home of systems developers especially Gentoo/Linux
