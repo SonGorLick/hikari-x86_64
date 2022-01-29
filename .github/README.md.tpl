@@ -99,6 +99,8 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 > install -m755 /dev/stdin /sbin/localh3art-init << "EOF"
 > #!/bin/sh
 > 
+> exec 2>/dev/null
+> 
 > LANG='POSIX' SYSINIT='/sbin/openrc sysinit' \
 > X='\033[0m' W='\033[1;37m' R='\033[1;31m' G='\033[1;32m'
 > 
