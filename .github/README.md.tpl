@@ -96,20 +96,14 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 > **Below is an example of my trick ..**  
 > Run the following commands as root.
 > ```sh
-> install -m755 /dev/stdin /sbin/localh3art-init << "EOF"
+> install -m755 /dev/stdin /sbin/localh3art-init << "SYSINIT"
 > #!/bin/sh
 > 
-> exec 2>/dev/null
+> LANG='POSIX'
 > 
-> LANG='POSIX' SYSINIT='/sbin/openrc sysinit' \
 > X='\033[0m' W='\033[1;37m' R='\033[1;31m' G='\033[1;32m'
 > 
-> read -r KVER </proc/version
-> 
-> KVER="${KVER%%\ (*}" \
-> KVER="${KVER##*version\ }"
-> 
-> printf ' %b ' "${G}* ${W}Booting with ${R}${KVER:-$(uname -r)}"
+> printf ' %b ' "${G}* ${W}Booting with ${R}$(uname -r)"
 > 
 > for S in 1 2 3 4; do
 >     [ "$S" -gt 1 ] || continue
@@ -119,8 +113,8 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 > 
 > clear
 > 
-> exec ${SYSINIT}
-> EOF
+> exec /sbin/openrc sysinit
+> SYSINIT
 > ```
 > ```sh
 > sed -e '/si::sysinit:/s|openrc sysinit|localh3art-init|' -i /etc/inittab
