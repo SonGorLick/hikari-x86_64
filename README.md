@@ -2,7 +2,7 @@
 
 <p align="center"><samp>✲ optimized for multitask under extreme loads, see <a href="https://github.com/igo95862/cfs-zen-tweaks">cfs-zen-tweaks</a>(<a href="https://github.com/owl4ce/cfs-zen-tweaks-openrc">-openrc</a>) ✲</samp></p>
 
-## [linux](./linux) <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/hikari-x86_64?style=flat-square&label=&color=000000&logo=GitHub&logoColor=white&labelColor=373e4d"/>
+## [linux](./linux) <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/hikari-x86_64?style=flat-square&label=&color=000000&logo=github&logoColor=white&labelColor=000000"/>
 
 <p align="center"><a href="#general-linux-kernel-compilation-with-gcc-toolchain"><img alt="" src="https://repository-images.githubusercontent.com/308812995/e978591c-11ed-452f-bab8-718c2fca29cf"/></a></p>
 
@@ -68,11 +68,11 @@ ionice -c2 -n0 make -j$(nproc) LLVM=1 LLVM_IAS=1 install
 ```
 > Estimated may be longer than the GCC toolchain, but significally improving performance by using ThinLTO.
 
-> <p align="center"><img src="./.github/screenshots/2021-10-30-072210_1301x748_scrot.png" alt="O3"/></p>
-> <p align="center"><img src="./.github/screenshots/2021-10-30-073344_1301x748_scrot.png" alt="thin.lto"/></p>
-> <p align="center"><img src="./.github/screenshots/2021-10-30-072151_1301x748_scrot.png" alt="march"/></p>
+> <p align="center"><img alt="" src="./.github/screenshots/2021-10-30-072210_1301x748_scrot.png"/></p>
+> <p align="center"><img alt="" src="./.github/screenshots/2021-10-30-073344_1301x748_scrot.png"/></p>
+> <p align="center"><img alt="" src="./.github/screenshots/2021-10-30-072151_1301x748_scrot.png"/></p>
 
-> See also Linux kernel configuration at [Gentoo Wiki](https://wiki.gentoo.org/wiki/Kernel/Configuration).
+> Read more at [Linux Kernel documentation](https://kernel.org/doc/html/latest/admin-guide/README.html) and [Gentoo Wiki](https://wiki.gentoo.org/wiki/Kernel/Configuration).
 
 ##  
 ### How to convert my own framebuffer logo?
