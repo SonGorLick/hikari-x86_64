@@ -2,7 +2,7 @@
 
 <p align="center">
   <samp>
-      ✲ optimized for multitask under extreme loads, see <a href="https://github.com/igo95862/cfs-zen-tweaks">cfs-zen-tweaks</a>(<a href="https://github.com/owl4ce/cfs-zen-tweaks-openrc">-openrc</a>) ✲
+    optimized for multitask under extreme loads, see <a href="https://github.com/igo95862/cfs-zen-tweaks">cfs-zen-tweaks</a>(<a href="https://github.com/owl4ce/cfs-zen-tweaks-openrc">-openrc</a>)
   </samp>
 </p>
 
@@ -47,7 +47,7 @@
 
 <h1></h1>
 
-> ### <samp>General Linux kernel compilation with GCC toolchain</samp>
+> ### <samp>GENERAL LINUX KERNEL COMPILATION WITH GCC TOOLCHAIN</samp>
 
 ```sh
 # Copy my hikari configuration as default config.
@@ -66,7 +66,7 @@ ionice -c2 -n0 make -j$(nproc) modules_install
 ionice -c2 -n0 make -j$(nproc) install
 ```
 
-> ### <samp>General Linux kernel compilation with LLVM toolchain</samp>
+> ### <samp>GENERAL LINUX KERNEL COMPILATION WITH LLVM TOOLCHAIN</samp>
 
 ```sh
 # Copy my hikari configuration as default config.
@@ -96,15 +96,15 @@ ionice -c2 -n0 make -j$(nproc) LLVM=1 LLVM_IAS=1 install
 
 <h1></h1>
 
-### <samp>How to convert my own framebuffer logo?</samp>
+### <samp>HOW TO CONVERT MY OWN FRAMEBUFFER LOGO?</samp>
 
-> Simply install `netpbm` then convert your own logo, an example **.png** file into 224 24-bit colors ASCII pixmap.
+> Simply install **netpbm** then convert your own logo, an example **.png** file into 224 24-bit colors ASCII pixmap.
 >
 > > Generally, the Linux kernel framebuffer logo size is **80**x**80** pixels, but if you want to adjust the full
-> > screen size, you have to set up your logo with a size that matches your screen resolution e.g **1366**x**768**.
+> > screen size, you have to set up your logo with size that matches your screen resolution like **1366**x**768**.
 >
-> Below will replace the default Tux logo with our custom logo. ~~Initially I made a patch, but I think it's less
-  effective because it's enough to replace then build the kernel.~~
+> Below will replace the default Tux logo with our custom logo. ~~Initially I made a patch, but I think it's
+  impractical because it's enough to replace then build the kernel.~~
   Created [linucc224](https://github.com/owl4ce/linucc224) for auto-patching. :tada:
 
 ```sh
@@ -164,9 +164,9 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 
 <h1></h1>
 
-### <samp>Generating initramfs (optional)</samp>
+### <samp>GENERATING INITRAMFS (OPTIONAL)</samp>
 
-> #### <samp>Dracut</samp>
+> #### <samp>DRACUT</samp>
 >
 > Adjust version of the kernel that you build. Below is an example, run the following commands as root.
 
@@ -179,39 +179,39 @@ dracut --kver 5.17.1-hikari-x86_64 /boot/initramfs-5.17.1-hikari-x86_64.img --fo
 
 <h1></h1>
 
-### <samp>EFI Stub Examples</samp>
+### <samp>EFI STUB EXAMPLES</samp>
 
-> You must have separate `/boot` type **vfat** (12/16/32) partition, run one of the two commands below as root.
+> You must have separate `/boot` volume, type **vfat** (12/16/32), run one of the two commands below as root.
 
-> #### <samp>With initramfs</samp>
-
-```sh
-efibootmgr --create \
-           --part 1 \
-           --disk /dev/sda \
-           --label "GENTOO.hikari-x86_64" \
-           --loader "\vmlinuz-5.17.1-hikari-x86_64" \
-           -u "loglevel=4 initrd=\initramfs-5.17.1-hikari-x86_64.img"
-```
-
-> #### <samp>Without initramfs</samp>
+> #### <samp>WITH INITRAMFS</samp>
 
 ```sh
 efibootmgr --create \
            --part 1 \
            --disk /dev/sda \
-           --label "GENTOO.hikari-x86_64" \
-           --loader "\vmlinuz-5.17.1-hikari-x86_64" \
-           -u "root=PARTUUID=13992175-d060-1948-b042-ade29f8af571 rootfstype=f2fs rootflags=gc_merge,checkpoint_merge,compress_algorithm=lz4,compress_extension=*,compress_chksum,compress_cache,atgc loglevel=4"
+           --label 'GENTOO.hikari-x86_64' \
+           --loader '\vmlinuz-5.17.1-hikari-x86_64' \
+           -u 'loglevel=4 initrd=\initramfs-5.17.1-hikari-x86_64.img'
 ```
 
-> #### <samp>Show detailed entry</samp>
+> #### <samp>WITHOUT INITRAMFS</samp>
+
+```sh
+efibootmgr --create \
+           --part 1 \
+           --disk /dev/sda \
+           --label 'GENTOO.hikari-x86_64' \
+           --loader '\vmlinuz-5.17.1-hikari-x86_64' \
+           -u 'root=PARTUUID=13992175-d060-1948-b042-ade29f8af571 rootfstype=f2fs rootflags=gc_merge,checkpoint_merge,compress_algorithm=lz4,compress_extension=*,compress_chksum,compress_cache,atgc loglevel=4'
+```
+
+> #### <samp>SHOW DETAILED ENTRY</samp>
 
 ```sh
 efibootmgr -v
 ```
 
-> #### <samp>Delete entry</samp>
+> #### <samp>DELETING ENTRY</samp>
 
 ```sh
 efibootmgr -BbXXXX
@@ -219,12 +219,12 @@ efibootmgr -BbXXXX
 
 <h1></h1>
 
-### <samp>Acknowledgements</samp>
+### <samp>ACKNOWLEDGEMENTS</samp>
 
 > * All Linux kernel developers and contributors
 > * [Alexandre Frade](https://github.com/xanmod) as [Linux-Xanmod](https://xanmod.org) maintainer
 > * [Hamad Al Marri](https://github.com/hamadmarri) as
-    [CacULE (and other) schedulers](https://github.com/hamadmarri/cacule-cpu-scheduler) author
+    [CacULE (and others) scheduler](https://github.com/hamadmarri/cacule-cpu-scheduler) author
 > * [Peter Jung](https://github.com/ptr1337) as [CachyOS](https://cachyos.org) developer,
     optimized Arch-based Linux distribution
-> * [src_prepare Group](https://src_prepare.gitlab.io), the home of systems developers especially Gentoo/Linux
+> * [src_prepare Group](https://src_prepare.gitlab.io), the home of system developers especially Gentoo/Linux
