@@ -1,167 +1,230 @@
-# <p align="center">`_KVER_`</p>
+## <p align="center">`_KVER_`</p> <img alt="" align="left" src="https://img.shields.io/github/commit-activity/m/owl4ce/hikari-x86_64/hikari-x86_64?style=flat-square&label=&color=000000&logo=gitbook&logoColor=white&labelColor=000000"/> <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/hikari-x86_64?style=flat-square&label=&color=000000&logo=github&logoColor=white&labelColor=000000"/>
 
-<p align="center"><samp>✲ optimized for multitask under extreme loads, see <a href="https://github.com/igo95862/cfs-zen-tweaks">cfs-zen-tweaks</a>(<a href="https://github.com/owl4ce/cfs-zen-tweaks-openrc">-openrc</a>) ✲</samp></p>
+<p align="center">
+  <samp>
+      ✲ optimized for multitask under extreme loads, see <a href="https://github.com/igo95862/cfs-zen-tweaks">cfs-zen-tweaks</a>(<a href="https://github.com/owl4ce/cfs-zen-tweaks-openrc">-openrc</a>) ✲
+  </samp>
+</p>
 
-## [linux](./linux) <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/hikari-x86_64?style=flat-square&label=&color=000000&logo=github&logoColor=white&labelColor=000000"/>
-
-<p align="center"><a href="#general-linux-kernel-compilation-with-gcc-toolchain"><img alt="" src="https://repository-images.githubusercontent.com/308812995/e978591c-11ed-452f-bab8-718c2fca29cf"/></a></p>
+<p align="center">
+  <a href="#general-linux-kernel-compilation-with-gcc-toolchain">
+    <img alt="" src="https://repository-images.githubusercontent.com/308812995/e978591c-11ed-452f-bab8-718c2fca29cf"/>
+  </a>
+</p>
 
 <details>
-<summary>Featured configuration/tweaks</summary>
-  
-  <br>
-  
-  > * Use [LRNG](https://github.com/smuellerDD/lrng) framework to provide sufficient entropy during boot as well as in virtual environments and SSDs
-  > * Use balanced 500Hz timer frequency for fast desktop interactivity and smoothness with energy-efficient
-  > * Use [Clang/LLVM toolchain](https://kernel.org/doc/html/latest/kbuild/llvm.html) with O3 optimization for processor family x86-64-v3 and ThinLTO by default
-  > * Majority use [LZ4](https://github.com/lz4/lz4) compression algorithm for fastest de/compression speeds with low-compression ratio
-  > * Use [BFQ I/O scheduler](https://kernel.org/doc/html/latest/block/bfq-iosched.html) which guarantees high-system, applications responsiveness, and low-latency
-  > * Use [Performance governor](https://kernel.org/doc/html/latest/admin-guide/pm/cpufreq.html) by default for max CPU speed, change if too high energy consumptions
-  > * Disabled unused features like 5-level page tables, debugging, kexec, kprobes, NUMA, Xen, etc.
-  > * Enabled F2FS (SSD) and EXT4 (HDD) as built-in which optimized, and BTRFS as module
-  > * Enabled AMD-specific or Intel-specific features, other SoCs are all disabled
-  > * Enabled [AMD-pstate](https://lore.kernel.org/lkml/20211029130241.1984459-1-ray.huang@amd.com/T) driver for schedutil and ondemand governor
-  > * Enabled [Zstd](https://github.com/facebook/zstd) module compression support by default (KMOD)
-  > * Enabled Google's BBRv2 TCP congestion control by default
-  > * Enabled New Paragon's Software [NTFS3](https://kernel.org/doc/html/latest/filesystems/ntfs3.html) driver
-  > * Full-support [EFI stub](https://kernel.org/doc/html/latest/admin-guide/efi-stub.html) w/o initramfs
-  > * Many more as in [xanmod.org](https://xanmod.org).
-  
-  > This configuration based on Linux souces with [Xanmod patchset](https://xanmod.org) + [Gentoo patches](https://wiki.gentoo.org/wiki/Project:Kernel/Gentoo-sources) from [src_prepare-overlay](https://gitlab.com/src_prepare/src_prepare-overlay/-/tree/master/sys-kernel/xanmod-sources).
+<summary><b>Featured configuration/tweaks</b></summary>
+
+<br>
+
+> * Use [LRNG](https://github.com/smuellerDD/lrng) framework to provide sufficient entropy during boot as well as in
+    virtual environments and SSDs
+> * Use balanced 500Hz timer frequency for fast desktop interactivity and smoothness with energy-efficients
+> * Use [Clang/LLVM toolchain](https://kernel.org/doc/html/latest/kbuild/llvm.html) with O3 optimization for processor
+    family x86-64-v3 and ThinLTO by default
+> * Majority use [LZ4](https://github.com/lz4/lz4) compression algorithm for fastest de/compression speeds with
+    low-compression ratio
+> * Use [BFQ I/O scheduler](https://kernel.org/doc/html/latest/block/bfq-iosched.html) which guarantees high-system,
+    applications responsiveness, and low-latency
+> * Use [performance governor](https://kernel.org/doc/html/latest/admin-guide/pm/cpufreq.html) by default for max
+    CPU speed, change if too high energy consumptions
+> * Disabled unused features like 5-level page tables, debugging, kexec, kprobes, NUMA, Xen, etc.
+> * Enabled F2FS (SSD) and EXT4 (HDD) as built-in which optimized, and BTRFS as module
+> * Enabled AMD-specific or Intel-specific features, other SoCs are all disabled
+> * Enabled [AMD-pstate](https://lore.kernel.org/lkml/20211029130241.1984459-1-ray.huang@amd.com/T) driver for
+    schedutil and ondemand governor
+> * Enabled [zstd](https://github.com/facebook/zstd) module compression support by default (KMOD)
+> * Enabled Google's BBRv2 TCP congestion control by default
+> * Enabled New Paragon's Software [NTFS3](https://kernel.org/doc/html/latest/filesystems/ntfs3.html) driver
+> * Full-support [EFI stub](https://kernel.org/doc/html/latest/admin-guide/efi-stub.html) w/o initramfs
+> * Many more as in [xanmod.org](https://xanmod.org)
+
+> This configuration based on Linux souces with [Xanmod patchset](https://xanmod.org) +
+  [Gentoo patches](https://wiki.gentoo.org/wiki/Project:Kernel/Gentoo-sources) from
+  [src_prepare-overlay](https://gitlab.com/src_prepare/src_prepare-overlay/-/tree/master/sys-kernel/xanmod-sources).
 
 </details>
 
-##  
-> #### General Linux kernel compilation with GCC toolchain
+<h1></h1>
+
+> ### <samp>General Linux kernel compilation with GCC toolchain</samp>
+
 ```sh
 # Copy my hikari configuration as default config.
 cp -v .config_hikari .config
 
-# Many people usually use `menuconfig`, use `nconfig` to use beautiful curses interface.
+# Configure via beautiful curses interface.
 ionice -c2 -n0 make -j$(nproc) nconfig
 
 # Build Linux kernel.
 ionice -c2 -n0 make -j$(nproc)
 
-# Install the kernel modules.
+# Install kernel modules.
 ionice -c2 -n0 make -j$(nproc) modules_install
 
-# Install the bzImage, known as vmlinuz.
+# Install bzImage, known as vmlinuz.
 ionice -c2 -n0 make -j$(nproc) install
 ```
-> #### General Linux kernel compilation with LLVM toolchain
+
+> ### <samp>General Linux kernel compilation with LLVM toolchain</samp>
+
 ```sh
 # Copy my hikari configuration as default config.
 cp -v .config_hikari .config
 
-# Many people usually use `menuconfig`, use `nconfig` to use beautiful curses interface.
+# Configure via beautiful curses interface.
 ionice -c2 -n0 make -j$(nproc) LLVM=1 LLVM_IAS=1 nconfig
 
 # Build Linux kernel.
 ionice -c2 -n0 make -j$(nproc) LLVM=1 LLVM_IAS=1
 
-# Install the kernel modules.
+# Install kernel modules.
 ionice -c2 -n0 make -j$(nproc) LLVM=1 LLVM_IAS=1 modules_install
 
-# Install the bzImage, known as vmlinuz.
+# Install bzImage, known as vmlinuz.
 ionice -c2 -n0 make -j$(nproc) LLVM=1 LLVM_IAS=1 install
 ```
+
 > Estimated may be longer than the GCC toolchain, but significally improving performance by using ThinLTO.
 
 > <p align="center"><img alt="" src="./.github/screenshots/2021-10-30-072210_1301x748_scrot.png"/></p>
 > <p align="center"><img alt="" src="./.github/screenshots/2021-10-30-073344_1301x748_scrot.png"/></p>
 > <p align="center"><img alt="" src="./.github/screenshots/2021-10-30-072151_1301x748_scrot.png"/></p>
 
-> Read more at [Linux Kernel documentation](https://kernel.org/doc/html/latest/admin-guide/README.html) and [Gentoo Wiki](https://wiki.gentoo.org/wiki/Kernel/Configuration).
+> Read more at [Linux Kernel documentation](https://kernel.org/doc/html/latest/admin-guide/README.html).
+  See also [Gentoo Wiki](https://wiki.gentoo.org/wiki/Kernel/Configuration).
 
-##  
-### How to convert my own framebuffer logo?
+<h1></h1>
+
+### <samp>How to convert my own framebuffer logo?</samp>
+
 > Simply install `netpbm` then convert your own logo, an example **.png** file into 224 24-bit colors ASCII pixmap.
-> 
-> > Generally, the Linux kernel framebuffer logo size is **80**x**80** pixels, but if you want to adjust the full screen size, you have to set up your logo with a size that matches your screen resolution e.g **1366**x**768**.
 >
-> Below will replace the default Tux logo with our custom logo. ~Initially I made a patch, but I think it's less effective because it's enough to replace then build the kernel.~ Created [linucc224](https://github.com/owl4ce/linucc224) for auto-patching. :tada:
+> > Generally, the Linux kernel framebuffer logo size is **80**x**80** pixels, but if you want to adjust the full
+> > screen size, you have to set up your logo with a size that matches your screen resolution e.g **1366**x**768**.
+>
+> Below will replace the default Tux logo with our custom logo. ~~Initially I made a patch, but I think it's less
+  effective because it's enough to replace then build the kernel.~~
+  Created [linucc224](https://github.com/owl4ce/linucc224) for auto-patching. :tada:
+
 ```sh
 pngtopnm /path/to/your_logo.png | ppmquant -fs 223 | pnmtoplainpnm > logo_linux_clut224.ppm
 
 doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_clut224.ppm
 ```
 
-> To make framebuffer logo to appear on boot, ensure to use `loglevel=4` in the [kernel parameters](https://wiki.archlinux.org/index.php/Kernel_parameters).
+> To make the framebuffer logo appears on boot, ensure to use `loglevel=4` in the
+  [kernel parameters](https://kernel.org/doc/html/latest/admin-guide/kernel-parameters.html).
 
-> #### NOTE
-> If you're using custom framebuffer logo like mine.  
-> > The framebuffer logo must be cleared before init runs, you can modify your init. I've only ever tried on **runit** and **sysvinit**+**openrc**, other than that I don't know. For example **sysvinit**+**openrc** on Gentoo/Linux, I created [wrapper script](https://github.com/owl4ce/hmg/blob/main/sbin/localh3art-init) to run curses **clear** command before executing **openrc sysinit**. See my [inittab](https://github.com/owl4ce/hmg/blob/main/etc/inittab#L19-L20).  
-> 
+> #### <samp>NOTE</samp>
+>
+> If you're using custom framebuffer logo like mine.
+>
+> > The framebuffer logo must be cleared before init runs, you can modify your init. I've only ever tried on **runit**
+> > and **sysvinit**+**openrc**, other than that I don't know. For example **sysvinit**+**openrc** on Gentoo/Linux,
+> > I created [wrapper script](https://github.com/owl4ce/hmg/blob/main/sbin/localh3art-init) to run curses **clear**
+> > command before executing **openrc sysinit**.
+> > See my [inittab](https://github.com/owl4ce/hmg/blob/main/etc/inittab#L19-L20).
+>
 > **Below is an example of my trick ..**  
 > Run the following commands as root.
+>
 > ```sh
 > install -m755 /dev/stdin /sbin/localh3art-init << "SYSINIT"
 > #!/bin/sh
-> 
-> LANG='POSIX'
-> 
-> X='\033[0m' W='\033[1;37m' R='\033[1;31m' G='\033[1;32m'
-> 
+>
+> G='\033[1;32m' W='\033[1;37m' R='\033[1;31m' NC='\033[0m'
+>
 > printf ' %b ' "${G}* ${W}Booting with ${R}$(uname -r)"
-> 
+>
 > for S in 1 2 3 4; do
 >     [ "$S" -gt 1 ] || continue
->     printf '%b' "${W}.${X}"
+>     printf '%b' "${W}.${NC}"
 >     sleep .1s
 > done
-> 
+>
 > clear
-> 
+>
 > exec /sbin/openrc sysinit
 > SYSINIT
 > ```
+>
 > ```sh
 > sed -e '/si::sysinit:/s|openrc sysinit|localh3art-init|' -i /etc/inittab
+> ```
 
 > **Or, if you're actually don't care about framebuffer logo ..**  
 > Simply enable this to disable the framebuffer logo that appears on boot.
-> ```cfg  
+>
+> ```cfg
 > CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER=y
 > ```
+>
 > `Device Drivers` 🡲 `Graphics support` 🡲 `Console display driver support`
 
-##  
-### Generating initramfs (optional)
-> #### Dracut
+<h1></h1>
+
+### <samp>Generating initramfs (optional)</samp>
+
+> #### <samp>Dracut</samp>
+>
 > Adjust version of the kernel that you build. Below is an example, run the following commands as root.
+
 ```sh
 dracut --kver _KVER_ /boot/initramfs-_KVER_.img --force
 ```
-> See also my [dracut.conf](https://github.com/owl4ce/hmg/blob/main/etc/dracut.conf). Read more at [Gentoo Wiki](https://wiki.gentoo.org/wiki/Dracut).
 
-##  
-### EFI Stub Examples
-> You must have separate `/boot` type **vfat** (12/16/32) partition, run one of the two commands below as root.  
+> See also my [dracut.conf](https://github.com/owl4ce/hmg/blob/main/etc/dracut.conf).
+  Read more at [Gentoo Wiki](https://wiki.gentoo.org/wiki/Dracut).
 
-> #### With initramfs
+<h1></h1>
+
+### <samp>EFI Stub Examples</samp>
+
+> You must have separate `/boot` type **vfat** (12/16/32) partition, run one of the two commands below as root.
+
+> #### <samp>With initramfs</samp>
+
 ```sh
-efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO.hikari-x86_64" --loader "\vmlinuz-_KVER_" \
--u "loglevel=4 initrd=\initramfs-_KVER_.img"
+efibootmgr --create \
+           --part 1 \
+           --disk /dev/sda \
+           --label "GENTOO.hikari-x86_64" \
+           --loader "\vmlinuz-_KVER_" \
+           -u "loglevel=4 initrd=\initramfs-_KVER_.img"
 ```
-> #### Without initramfs
+
+> #### <samp>Without initramfs</samp>
+
 ```sh
-efibootmgr --create --part 1 --disk /dev/sda --label "GENTOO.hikari-x86_64" --loader "\vmlinuz-_KVER_" \
--u "root=PARTUUID=13992175-d060-1948-b042-ade29f8af571 rootfstype=f2fs rootflags=gc_merge,checkpoint_merge,compress_algorithm=lz4,compress_extension=*,compress_chksum,compress_cache,atgc loglevel=4"
+efibootmgr --create \
+           --part 1 \
+           --disk /dev/sda \
+           --label "GENTOO.hikari-x86_64" \
+           --loader "\vmlinuz-_KVER_" \
+           -u "root=PARTUUID=13992175-d060-1948-b042-ade29f8af571 rootfstype=f2fs rootflags=gc_merge,checkpoint_merge,compress_algorithm=lz4,compress_extension=*,compress_chksum,compress_cache,atgc loglevel=4"
 ```
-> #### Show detailed entry
+
+> #### <samp>Show detailed entry</samp>
+
 ```sh
 efibootmgr -v
 ```
-> #### Delete entry
+
+> #### <samp>Delete entry</samp>
+
 ```sh
 efibootmgr -BbXXXX
 ```
 
-##  
-### Acknowledgements
+<h1></h1>
+
+### <samp>Acknowledgements</samp>
+
 > * All Linux kernel developers and contributors
 > * [Alexandre Frade](https://github.com/xanmod) as [Linux-Xanmod](https://xanmod.org) maintainer
-> * [Hamad Al Marri](https://github.com/hamadmarri) as [CacULE (and other) scheduler](https://github.com/hamadmarri/cacule-cpu-scheduler) author
-> * [Peter Jung](https://github.com/ptr1337) as [CachyOS](https://cachyos.org) developer, optimized Arch-based Linux distribution
+> * [Hamad Al Marri](https://github.com/hamadmarri) as
+    [CacULE (and other) schedulers](https://github.com/hamadmarri/cacule-cpu-scheduler) author
+> * [Peter Jung](https://github.com/ptr1337) as [CachyOS](https://cachyos.org) developer,
+    optimized Arch-based Linux distribution
 > * [src_prepare Group](https://src_prepare.gitlab.io), the home of systems developers especially Gentoo/Linux
