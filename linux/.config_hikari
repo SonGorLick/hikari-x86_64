@@ -9424,7 +9424,7 @@ CONFIG_XILINX_XADC=m
 #
 # Analog to digital and digital to analog converters
 #
-# CONFIG_AD74413R is not set
+CONFIG_AD74413R=m
 # end of Analog to digital and digital to analog converters
 
 #
