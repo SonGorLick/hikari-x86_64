@@ -1,4 +1,4 @@
-## <p align="center">`5.17.1-hikari-x86_64`</p> <img alt="" align="left" src="https://img.shields.io/github/commit-activity/m/owl4ce/hikari-x86_64/hikari-x86_64?style=flat-square&label=&color=000000&logo=gitbook&logoColor=white&labelColor=000000"/> <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/hikari-x86_64?style=flat-square&label=&color=000000&logo=github&logoColor=white&labelColor=000000"/>
+## <p align="center">`5.17.5-hikari-x86_64`</p> <img alt="" align="left" src="https://img.shields.io/github/commit-activity/m/owl4ce/hikari-x86_64/hikari-x86_64?style=flat-square&label=&color=000000&logo=gitbook&logoColor=white&labelColor=000000"/> <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/hikari-x86_64?style=flat-square&label=&color=000000&logo=github&logoColor=white&labelColor=000000"/>
 
 <p align="center">
   <samp>
@@ -171,7 +171,7 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 > Adjust version of the kernel that you build. Below is an example, run the following commands as root.
 
 ```sh
-dracut --kver 5.17.1-hikari-x86_64 /boot/initramfs-5.17.1-hikari-x86_64.img --force
+dracut --kver 5.17.5-hikari-x86_64 /boot/initramfs-5.17.5-hikari-x86_64.img --force
 ```
 
 > See also my [dracut.conf](https://github.com/owl4ce/hmg/blob/main/etc/dracut.conf).
@@ -190,8 +190,8 @@ efibootmgr --create \
            --part 1 \
            --disk /dev/sda \
            --label 'GENTOO.hikari-x86_64' \
-           --loader '\vmlinuz-5.17.1-hikari-x86_64' \
-           -u 'loglevel=4 initrd=\initramfs-5.17.1-hikari-x86_64.img'
+           --loader '\vmlinuz-5.17.5-hikari-x86_64' \
+           -u 'loglevel=4 initrd=\initramfs-5.17.5-hikari-x86_64.img'
 ```
 
 > #### <samp>WITHOUT INITRAMFS</samp>
@@ -201,7 +201,7 @@ efibootmgr --create \
            --part 1 \
            --disk /dev/sda \
            --label 'GENTOO.hikari-x86_64' \
-           --loader '\vmlinuz-5.17.1-hikari-x86_64' \
+           --loader '\vmlinuz-5.17.5-hikari-x86_64' \
            -u 'root=PARTUUID=13992175-d060-1948-b042-ade29f8af571 rootfstype=f2fs rootflags=gc_merge,checkpoint_merge,compress_algorithm=lz4,compress_extension=*,compress_chksum,compress_cache,atgc loglevel=4'
 ```
 
