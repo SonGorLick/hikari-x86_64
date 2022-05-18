@@ -39,7 +39,7 @@
 > * Full-support [EFI stub](https://kernel.org/doc/html/latest/admin-guide/efi-stub.html) w/o initramfs
 > * Many more as in [xanmod.org](https://xanmod.org)
 
-> This configuration based on Linux souces with [Xanmod patchset](https://xanmod.org) +
+> This configuration based on Linux sources with [Xanmod patchset](https://xanmod.org) +
   [Gentoo patches](https://wiki.gentoo.org/wiki/Project:Kernel/Gentoo-sources) from
   [src_prepare-overlay](https://gitlab.com/src_prepare/src_prepare-overlay/-/tree/master/sys-kernel/xanmod-sources).
 
