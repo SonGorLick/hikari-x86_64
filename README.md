@@ -1,3 +1,5 @@
+<div align="justify">
+
 ## <p align="center">`5.17.5-hikari-x86_64`</p> <img alt="" align="left" src="https://img.shields.io/github/commit-activity/m/owl4ce/hikari-x86_64/hikari-x86_64?style=flat-square&label=&color=000000&logo=gitbook&logoColor=white&labelColor=000000"/> <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/hikari-x86_64?style=flat-square&label=&color=000000&logo=github&logoColor=white&labelColor=000000"/>
 
 <p align="center">
@@ -228,3 +230,5 @@ efibootmgr -BbXXXX
 > * [Peter Jung](https://github.com/ptr1337) as [CachyOS](https://cachyos.org) developer,
     optimized Arch-based Linux distribution
 > * [src_prepare Group](https://src_prepare.gitlab.io), the home of system developers especially Gentoo/Linux
+
+</div>
