@@ -128,7 +128,7 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 > > command before executing **openrc sysinit**.
 > > See my [inittab](https://github.com/owl4ce/hmg/blob/main/etc/inittab#L19-L20).
 >
-> **Below is an example of my trick ..**  
+> **Below is an example of my trick ...**  
 > Run the following commands as root.
 >
 > ```sh
@@ -155,7 +155,7 @@ doas cp -fv logo_linux_clut224.ppm /usr/src/linux/drivers/video/logo/logo_linux_
 > sed -e '/si::sysinit:/s|openrc sysinit|localh3art-init|' -i /etc/inittab
 > ```
 
-> **Or, if you're actually don't care about framebuffer logo ..**  
+> **Or, if you're actually don't care about framebuffer logo ...**  
 > Simply enable this to disable the framebuffer logo that appears on boot.
 >
 > ```cfg
