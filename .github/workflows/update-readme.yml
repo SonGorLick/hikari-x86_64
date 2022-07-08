@@ -1,22 +1,17 @@
-name: Update README.md
+name: Update ReadMe
 
 on:
   push:
-    branches: [ hikari-x86_64 ]
-  pull_request:
-    branches: [ hikari-x86_64 ]
-  
-  workflow_dispatch:
-  
-jobs:
-  update_readme:
-    runs-on: ubuntu-latest
+    branches:
+      - hikari-x86_64
 
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
 
-      - name: Expose git commit data
-        uses: rlespinasse/git-commit-data-action@v1.x
+      - uses: rlespinasse/git-commit-data-action@v1.x
 
       - name: Generate README.md
         env:
@@ -36,10 +31,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           commit_message: '🡲 Sync README.md'
-          branch: 'hikari-x86_64'
           commit_user_name: '光'
           commit_user_email: 'alternate-se7en@pm.me'
           commit_author: '光 <alternate-se7en@pm.me>'
           add_options: '-u'
+          push_options: '--force'
           skip_dirty_check: true
           disable_globbing: true
