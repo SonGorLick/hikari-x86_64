@@ -204,7 +204,7 @@ efibootmgr --create \
            --disk /dev/sda \
            --label 'GENTOO.hikari-x86_64' \
            --loader '\vmlinuz-5.19.0-hikari-x86_64' \
-           -u 'root=PARTUUID=13992175-d060-1948-b042-ade29f8af571 rootfstype=f2fs rootflags=gc_merge,checkpoint_merge,compress_algorithm=lz4,compress_extension=*,compress_chksum,compress_cache,atgc loglevel=4'
+           -u 'root=PARTUUID=13992175-d060-1948-b042-ade29f8af571 rootfstype=f2fs rootflags=gc_merge,flush_merge,data_flush,checkpoint_merge,compress_algorithm=lz4,compress_extension=*,compress_chksum,compress_cache,atgc loglevel=4'
 ```
 
 > #### <samp>SHOW DETAILED ENTRY</samp>
